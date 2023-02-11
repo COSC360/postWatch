@@ -11,6 +11,8 @@
 
 PostWatch is a website platform for users to showcase their watch collections and connect with other watch enthusiasts. The website will allow users to upload pictures and descriptions of their watches, as well as view and comment on other users' posts. The platform will provide a clean and intuitive interface for users to easily navigate and discover new watches. The website will feature a user-friendly design and responsive layout for mobile and desktop.
 
+---
+
 ### Functional Requirements
 
 - Non-registered users can view the posts of other users.
