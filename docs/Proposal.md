@@ -39,6 +39,22 @@ PostWatch is a website platform for users to showcase their watch collections an
 - AJAX to ensure asynchrounous updates.
 - MySQL will be used for database.
 
+---
+
+##Tentative Project Schedule 
+
+- Febuary 12th - Finish the proposal with the site map.
+- Febuary 16th - Have the layout document and the logic processes finalized.
+- Febuary 18th - Finish most of the client-side code inclunding security and validation.
+- Febuary 20th - Finish any remaining documents/functionalities and submit the deliverable with a functional client-side experience.
+- Febuary 27th - Finish most of the core functional components (baseline objectives) alongside database functionality.
+- March 3rd - Finish bulk of the server side code and ensure that its asynchronously updating.
+- March 6th - Finish the preliminary summary alongside any remaining deliverable and upload it on cosc360.ok.ubc.ca
+- March 14th - Ensure that all minial objectives have been met alongside full client-side and server-side implementation.
+- March 25th - Make sure that the website has aditional functionaly and working properly. 
+- March 30th - Deploy the website and perform client and server side unit testing to fix any bugs and ensure smooth functionality.
+- April 5th - Have the documentation ready alongside all the code for review.
+- April 7th - Final review of the entire website alongside the documents before the final submission on this day.
 
 
 
