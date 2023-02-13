@@ -9,7 +9,7 @@
 
 ### Project Description
 
-PostWatch is a website platform for users to showcase their watch collections and connect with other watch enthusiasts. The website will allow users to upload pictures and descriptions of their watches, as well as view and comment on other users' posts. The platform will provide a clean and intuitive interface for users to easily navigate and discover new watches. The website will feature a user-friendly design and responsive layout for mobile and desktop.
+The aim of PostWatch is to provide an online platform for users to showcase their watch collections and connect with other watch enthusiasts. This blogging website will allow users to create an account so that they can upload pictures and descriptions of their watches. They will aslo be albe to interact with the community as this platform will allow them to view and comment on other users' posts. The website aims to provide a clean and intuitive interface for users to easily navigate and discover new posts about watches. The website will feature a user-friendly design and responsive layout for mobile and desktop.
 
 ---
 
