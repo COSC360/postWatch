@@ -41,7 +41,7 @@ PostWatch is a website platform for users to showcase their watch collections an
 
 ---
 
-##Tentative Project Schedule 
+###Tentative Project Schedule 
 
 - Febuary 12th - Finish the proposal with the site map.
 - Febuary 16th - Have the layout document and the logic processes finalized.
