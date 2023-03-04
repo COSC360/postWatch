@@ -39,7 +39,7 @@
 <body>
     <div class="d-flex flex-column align-items-center mt-5">
         <h1 class="text-center">Sign Up</h1>
-        <form class="w-50">
+        <form class="w-50" action="signup.php" method="POST">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" class="form-control" id="username" aria-describedby="usernameHelp"

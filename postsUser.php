@@ -19,7 +19,7 @@
     }
     </style>
 
-    <title>index</title>
+    <title>userposts</title>
     <link rel="stylesheet" href="path/to/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
