@@ -22,9 +22,11 @@ $stmt->bind_param("sss", $_POST['username'], $_POST['email'], $password_hashed);
 
 // execute statement
 if ($stmt->execute()) {
+    // alert user that account has been created
+    echo "Account created successfully!";
     // redirect to login page
-    header("Location: signin.php");
-    exit;
+    // header("Location: signin.php");
+    // exit;
 } else {
     // check if username already exists
     if ($mysqli->errno == 1062) {
