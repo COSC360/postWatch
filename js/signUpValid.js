@@ -6,29 +6,31 @@ window.onload = () => {
   const confirmPasswordInput = document.getElementById("confirm-password");
 
   form.addEventListener("submit", (event) => {
-    event.preventDefault();
+    let isValid = true;
 
     if (!isValidUsername(usernameInput.value)) {
       alert("Invalid username");
-      return;
+      isValid = false;
     }
 
     if (!isValidEmail(emailInput.value)) {
       alert("Invalid email");
-      return;
+      isValid = false;
     }
 
     if (!isValidPassword(passwordInput.value)) {
-      alert("Invalid password");
-      return;
+      alert("Invalid password length");
+      isValid = false;
     }
 
     if (passwordInput.value !== confirmPasswordInput.value) {
       alert("Passwords do not match");
-      return;
+      isValid = false;
     }
 
-    form.submit();
+    if (!isValid) {
+      event.preventDefault();
+    }
   });
 
   function isValidUsername(username) {
@@ -41,7 +43,7 @@ window.onload = () => {
   }
 
   function isValidPassword(password) {
-    //validation here
+    // validation here
     return password.length >= 8;
   }
 };

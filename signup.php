@@ -8,8 +8,6 @@
     <title>signup</title>
     <link rel="stylesheet" href="./css/bootstrap-5.3.0-alpha1/bootstrap-5.3.0-alpha1/dist/css/bootstrap.min.css" />
     <script src="./css/bootstrap-5.3.0-alpha1/bootstrap-5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
-    <script src="./js/signUpValid.js"></script>
-
     <link rel="stylesheet" href="./css/styles.css" />
     <nav class="navbar navbar-expand-lg navbar-light bg-white static-top">
         <div class="container">
@@ -39,23 +37,26 @@
 <body>
     <div class="d-flex flex-column align-items-center mt-5">
         <h1 class="text-center">Sign Up</h1>
-        <form class="w-50" action="signup.php" method="POST">
+        <form class="w-50" action="process-signup.php" method="POST">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" class="form-control" id="username" aria-describedby="usernameHelp"
-                    placeholder="Enter username" required />
+                    placeholder="Enter username" required name="username" />
             </div>
             <div class="form-group">
                 <label for="email">Email id</label>
-                <input type="text" class="form-control" id="email" placeholder="Enter your email" required />
+                <input type="text" class="form-control" id="email" placeholder="Enter your email" required
+                    name="email" />
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Password" required />
+                <input type="password" class="form-control" id="password" placeholder="Password" required
+                    name="password" />
             </div>
             <div class="form-group">
                 <label for="confirmPassword">Confirm Password</label>
-                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" />
+                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password"
+                    name="confirmPassword" />
             </div>
             <br />
             <div class="d-flex justify-content-center">
