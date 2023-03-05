@@ -23,7 +23,7 @@ $stmt->bind_param("sss", $_POST['username'], $_POST['email'], $password_hashed);
 // execute statement
 if ($stmt->execute()) {
     // alert user that account has been created
-    echo "Account created successfully!";
+    echo "Account created successfully! You can now log in to your account.";
     // redirect to login page
     // header("Location: signin.php");
     // exit;

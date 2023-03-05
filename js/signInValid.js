@@ -4,22 +4,19 @@ window.onload = () => {
   const passwordInput = document.getElementById("password");
 
   form.addEventListener("submit", (event) => {
-    // Prevent the default form submission behavior
-    event.preventDefault();
-
     // Check if the username is valid
     if (!isValidUsername(usernameInput.value)) {
       alert("Invalid username");
+      event.preventDefault(); // Prevent the default form submission behavior
       return;
     }
 
     // Check if the password is valid
     if (!isValidPassword(passwordInput.value)) {
       alert("Invalid password");
+      event.preventDefault(); // Prevent the default form submission behavior
       return;
     }
-
-    form.submit();
   });
 
   function isValidUsername(username) {

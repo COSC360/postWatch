@@ -1,3 +1,8 @@
+<?php
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,9 +20,7 @@
             <a class="navbar-brand" href="#">
                 <img src="./img/logo.png" alt="..." height="80" />
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -38,15 +41,14 @@
 <body>
     <div class="d-flex flex-column align-items-center mt-5">
         <h1 class="text-center">Sign In</h1>
-        <form class="w-50">
+        <form class="w-50" method="POST">
             <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" aria-describedby="usernameHelp"
-                    placeholder="Enter username" required />
+                <input type="text" class="form-control" id="username" aria-describedby="usernameHelp" placeholder="Enter username" required name="username" />
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Password" required />
+                <input type="password" class="form-control" id="password" placeholder="Password" required name="password" />
             </div>
             <br />
             <div class="d-flex justify-content-center">
