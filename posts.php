@@ -16,9 +16,7 @@
             <a class="navbar-brand" href="#">
                 <img src="./img/logo.png" alt="..." height="80" />
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -53,8 +51,7 @@
         </div>
         <div class="row mb-2 align-items-stretch">
             <div class="col-md-6">
-                <div
-                    class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                     <div class="col p-4 d-flex flex-column position-static postUser">
                         <strong class="d-inline-block mb-2 text-primary">User</strong>
                         <h3 class="mb-0">Featured post</h3>
@@ -68,8 +65,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div
-                    class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                     <div class="col p-4 d-flex flex-column position-static postUser">
                         <strong class="d-inline-block mb-2 text-primary">User</strong>
                         <h3 class="mb-0">Featured post</h3>
@@ -85,8 +81,7 @@
         </div>
         <div class="row mb-2 align-items-stretch">
             <div class="col-md-6">
-                <div
-                    class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                     <div class="col p-4 d-flex flex-column position-static postUser">
                         <strong class="d-inline-block mb-2 text-primary">User</strong>
                         <h3 class="mb-0">Featured post</h3>
@@ -100,8 +95,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div
-                    class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                     <div class="col p-4 d-flex flex-column position-static postUser">
                         <strong class="d-inline-block mb-2 text-primary">User</strong>
                         <h3 class="mb-0">Featured post</h3>
@@ -117,8 +111,7 @@
         </div>
         <div class="row mb-2 align-items-stretch">
             <div class="col-md-6">
-                <div
-                    class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                     <div class="col p-4 d-flex flex-column position-static postUser">
                         <strong class="d-inline-block mb-2 text-primary">User</strong>
                         <h3 class="mb-0">Featured post</h3>
@@ -132,8 +125,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div
-                    class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                     <div class="col p-4 d-flex flex-column position-static postUser">
                         <strong class="d-inline-block mb-2 text-primary">User</strong>
                         <h3 class="mb-0">Featured post</h3>
@@ -149,8 +141,7 @@
         </div>
         <div class="row mb-2 align-items-stretch">
             <div class="col-md-6">
-                <div
-                    class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                     <div class="col p-4 d-flex flex-column position-static postUser">
                         <strong class="d-inline-block mb-2 text-primary">User</strong>
                         <h3 class="mb-0">Featured post</h3>
@@ -164,8 +155,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div
-                    class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                     <div class="col p-4 d-flex flex-column position-static postUser">
                         <strong class="d-inline-block mb-2 text-primary">User</strong>
                         <h3 class="mb-0">Featured post</h3>
