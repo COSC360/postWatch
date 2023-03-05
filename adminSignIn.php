@@ -16,7 +16,9 @@
             <a class="navbar-brand" href="#">
                 <img src="./img/logo.png" alt="..." height="80" />
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -38,12 +40,13 @@
         <form class="w-50">
             <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" aria-describedby="usernameHelp" placeholder="Enter username" />
+                <input type="text" class="form-control" id="username" aria-describedby="usernameHelp"
+                    placeholder="Enter username" required />
             </div>
 
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Password" />
+                <input type="password" class="form-control" id="password" placeholder="Password" required />
             </div>
             <br />
             <div class="d-flex justify-content-center">
