@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+<?php
+header("HTTP/1.0 404 Not Found");
+?>
+
 <html lang="en">
 
 <head>
