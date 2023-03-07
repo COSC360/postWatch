@@ -1,3 +1,16 @@
+<?php
+
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: index.php");
+    exit;
+}
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,17 +19,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
-        .navbar-nav .nav-link:hover {
-            background-color: #3d464e;
-        }
+    .navbar-nav .nav-link:hover {
+        background-color: #3d464e;
+    }
 
-        .btn:hover {
-            background-color: #f1f1f1;
-        }
+    .btn:hover {
+        background-color: #f1f1f1;
+    }
 
-        .btn i {
-            margin-right: 5px;
-        }
+    .btn i {
+        margin-right: 5px;
+    }
     </style>
 
     <title>userposts</title>
@@ -35,13 +48,15 @@
             <a class="navbar-brand" href="#">
                 <img src="./img/logo.png" alt="..." height="80" />
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto">
                     <li>
-                        <a href="signin.php">
+                        <a href="logout.php">
                             <button type="button" class="btn btn-outline-secondary btn-sm px-4">
                                 Sign Out
                             </button></a>
@@ -62,7 +77,8 @@
             <div class="row">
                 <nav class="col-3 bg-light sidebar bg-dark">
                     <div class="text-center my-4">
-                        <img src="./img/userProimg.jpg" alt="User Image" class="rounded-circle" width="100" height="100">
+                        <img src="./img/userProimg.jpg" alt="User Image" class="rounded-circle" width="100"
+                            height="100">
                         <h4 style="color:rgb(222, 235, 241);font-size:26px;">Username </h4>
                     </div>
                     <ul class="nav flex-column navbar-nav">
@@ -90,7 +106,8 @@
 
                     <div class="row mb-2 align-items-stretch">
                         <div class="col-md-6">
-                            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                            <div
+                                class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                                 <div class="col p-4 d-flex flex-column position-static postUser">
                                     <strong class="d-inline-block mb-2 text-primary">User</strong>
                                     <h3 class="mb-0">Featured post</h3>
@@ -114,7 +131,8 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                            <div
+                                class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                                 <div class="col p-4 d-flex flex-column position-static postUser">
                                     <strong class="d-inline-block mb-2 text-primary">User</strong>
                                     <h3 class="mb-0">Featured post</h3>
@@ -140,7 +158,8 @@
                     </div>
                     <div class="row mb-2 align-items-stretch">
                         <div class="col-md-6">
-                            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                            <div
+                                class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                                 <div class="col p-4 d-flex flex-column position-static postUser">
                                     <strong class="d-inline-block mb-2 text-primary">User</strong>
                                     <h3 class="mb-0">Featured post</h3>
@@ -164,7 +183,8 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                            <div
+                                class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                                 <div class="col p-4 d-flex flex-column position-static postUser">
                                     <strong class="d-inline-block mb-2 text-primary">User</strong>
                                     <h3 class="mb-0">Featured post</h3>
@@ -190,7 +210,8 @@
                     </div>
                     <div class="row mb-2 align-items-stretch">
                         <div class="col-md-6">
-                            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                            <div
+                                class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                                 <div class="col p-4 d-flex flex-column position-static postUser">
                                     <strong class="d-inline-block mb-2 text-primary">User</strong>
                                     <h3 class="mb-0">Featured post</h3>
@@ -214,7 +235,8 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                            <div
+                                class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                                 <div class="col p-4 d-flex flex-column position-static postUser">
                                     <strong class="d-inline-block mb-2 text-primary">User</strong>
                                     <h3 class="mb-0">Featured post</h3>
@@ -240,7 +262,8 @@
                     </div>
                     <div class="row mb-2 align-items-stretch">
                         <div class="col-md-6">
-                            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                            <div
+                                class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                                 <div class="col p-4 d-flex flex-column position-static postUser">
                                     <strong class="d-inline-block mb-2 text-primary">User</strong>
                                     <h3 class="mb-0">Featured post</h3>
@@ -264,7 +287,8 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                            <div
+                                class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                                 <div class="col p-4 d-flex flex-column position-static postUser">
                                     <strong class="d-inline-block mb-2 text-primary">User</strong>
                                     <h3 class="mb-0">Featured post</h3>
