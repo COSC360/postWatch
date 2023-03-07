@@ -5,6 +5,15 @@ session_start();
 if (!isset($_SESSION['user_id'])) {
     header("Location: index.php");
     exit;
+} elseif (isset($_SESSION["user_id"])) {
+
+    $mysqli =  require __DIR__ . '/database.php';
+
+    $sql = "SELECT * FROM user WHERE id = " . $_SESSION['user_id'];
+
+    $result = $mysqli->query($sql);
+
+    $user = $result->fetch_assoc();
 }
 
 ?>
@@ -79,7 +88,7 @@ if (!isset($_SESSION['user_id'])) {
                     <div class="text-center my-4">
                         <img src="./img/userProimg.jpg" alt="User Image" class="rounded-circle" width="100"
                             height="100">
-                        <h4 style="color:rgb(222, 235, 241);font-size:26px;">Username </h4>
+                        <h4 style="color:rgb(222, 235, 241);font-size:24px;"><?php echo $user['username']; ?> </h4>
                     </div>
                     <ul class="nav flex-column navbar-nav">
                         <li class="nav-item">
