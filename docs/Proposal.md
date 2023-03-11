@@ -1,10 +1,5 @@
 # Proposal
 
-### Team Members
-
-- Tushan Shahid
-- Abhimanyu Kinra
-
 ---
 
 ### Project Description
