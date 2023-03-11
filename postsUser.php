@@ -14,6 +14,18 @@ if (!isset($_SESSION['user_id'])) {
     $result = $mysqli->query($sql);
 
     $user = $result->fetch_assoc();
+
+    $sql = "SELECT * FROM post WHERE user_id = " . $_SESSION['user_id'];
+
+    $result = $mysqli->query($sql);
+
+    $posts = array();
+
+    while ($row = $result->fetch_assoc()) {
+        $posts[] = $row;
+    }
+
+    $mysqli->close();
 }
 
 ?>
@@ -28,17 +40,17 @@ if (!isset($_SESSION['user_id'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
-    .navbar-nav .nav-link:hover {
-        background-color: #3d464e;
-    }
+        .navbar-nav .nav-link:hover {
+            background-color: #3d464e;
+        }
 
-    .btn:hover {
-        background-color: #f1f1f1;
-    }
+        .btn:hover {
+            background-color: #f1f1f1;
+        }
 
-    .btn i {
-        margin-right: 5px;
-    }
+        .btn i {
+            margin-right: 5px;
+        }
     </style>
 
     <title>userposts</title>
@@ -57,9 +69,7 @@ if (!isset($_SESSION['user_id'])) {
             <a class="navbar-brand" href="#">
                 <img src="./img/logo.png" alt="..." height="80" />
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -82,15 +92,18 @@ if (!isset($_SESSION['user_id'])) {
 
     <main class="container mt-3">
         <div class="container-fluid">
-
             <div class="row">
                 <nav class="col-3 bg-light sidebar bg-dark">
                     <div class="text-center my-4">
-                        <img src="./img/userProimg.jpg" alt="User Image" class="rounded-circle" width="100"
-                            height="100">
+                        <img src="./img/userProimg.jpg" alt="User Image" class="rounded-circle" width="100" height="100">
                         <h4 style="color:rgb(222, 235, 241);font-size:24px;"><?php echo $user['username']; ?> </h4>
                     </div>
                     <ul class="nav flex-column navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="postsFeed.php">
+                                <h4 style="color:rgb(222, 235, 241);font-size: 20px;">Posts Feed</h4>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link active" href="addPost.php">
                                 <h4 style="color:rgb(222, 235, 241);font-size: 20px;">Create Post</h4>
@@ -108,227 +121,40 @@ if (!isset($_SESSION['user_id'])) {
                         </li>
                     </ul>
                 </nav>
+
+
+
                 <div class="col-9">
-
-
-
-
-                    <div class="row mb-2 align-items-stretch">
-                        <div class="col-md-6">
-                            <div
-                                class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                                <div class="col p-4 d-flex flex-column position-static postUser">
-                                    <strong class="d-inline-block mb-2 text-primary">User</strong>
-                                    <h3 class="mb-0">Featured post</h3>
-                                    <div class="mb-1 text-muted">Nov 12</div>
-                                    <p class="card-text mb-auto">
-                                        Sample content text
-                                    </p>
-                                    <a href="#" class="stretched-link">Continue reading</a>
-                                    <div class="mt-3 d-flex align-items-center">
-                                        <span class="me-4">
-                                            <i class="bi bi-heart text-danger hover-text-danger"></i>
-                                        </span>
-                                        <span class="ms-4">
-                                            <i class="bi bi-chat-dots text-primary hover-text-primary"></i>
-                                        </span>
+                    <h1> Your Posts </h1>
+                    <div class="row mb-2">
+                        <?php foreach ($posts as $post) { ?>
+                            <div class="col-md-6">
+                                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                                    <div class="col p-4 d-flex flex-column position-static postUser">
+                                        <strong class="d-inline-block mb-2 text-primary"><?php echo $user['username'] ?></strong>
+                                        <h3 class="mb-0"><?php echo $post['title']; ?></h3>
+                                        <div class="mb-1 text-muted"><?php echo $post['date']; ?></div>
+                                        <p class="card-text mb-auto">
+                                            <?php echo substr($post['content'], 0, 100) . '...'; ?>
+                                        </p>
+                                        <a href="#" class="stretched-link">Continue reading</a>
+                                        <div class="mt-3 d-flex align-items-center">
+                                            <span class="me-4"><i class="bi bi-heart text-danger hover-text-danger"></i></span>
+                                            <span class="ms-4"><i class="bi bi-chat-dots text-primary hover-text-primary"></i></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto d-none d-lg-block mx-auto p-2 text-center">
+                                        <img src="<?php echo $post['image']; ?>" alt="Post image" width="300" height="200">
                                     </div>
                                 </div>
-                                <div class="col-auto d-none d-lg-block">
-                                    <img src="./img/up13.jpg" alt="User Image" width="150" height="200" />
-                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div
-                                class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                                <div class="col p-4 d-flex flex-column position-static postUser">
-                                    <strong class="d-inline-block mb-2 text-primary">User</strong>
-                                    <h3 class="mb-0">Featured post</h3>
-                                    <div class="mb-1 text-muted">Nov 12</div>
-                                    <p class="card-text mb-auto">
-                                        Sample content text
-                                    </p>
-                                    <a href="#" class="stretched-link">Continue reading</a>
-                                    <div class="mt-3 d-flex align-items-center">
-                                        <span class="me-4">
-                                            <i class="bi bi-heart text-danger hover-text-danger"></i>
-                                        </span>
-                                        <span class="ms-4">
-                                            <i class="bi bi-chat-dots text-primary hover-text-primary"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-auto d-none d-lg-block">
-                                    <img src="./img/up14.jpg" alt="User Image" width="150" height="200" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-2 align-items-stretch">
-                        <div class="col-md-6">
-                            <div
-                                class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                                <div class="col p-4 d-flex flex-column position-static postUser">
-                                    <strong class="d-inline-block mb-2 text-primary">User</strong>
-                                    <h3 class="mb-0">Featured post</h3>
-                                    <div class="mb-1 text-muted">Nov 12</div>
-                                    <p class="card-text mb-auto">
-                                        Sample content text
-                                    </p>
-                                    <a href="#" class="stretched-link">Continue reading</a>
-                                    <div class="mt-3 d-flex align-items-center">
-                                        <span class="me-4">
-                                            <i class="bi bi-heart text-danger hover-text-danger"></i>
-                                        </span>
-                                        <span class="ms-4">
-                                            <i class="bi bi-chat-dots text-primary hover-text-primary"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-auto d-none d-lg-block">
-                                    <img src="./img/up15.jpg" alt="User Image" width="150" height="200" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div
-                                class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                                <div class="col p-4 d-flex flex-column position-static postUser">
-                                    <strong class="d-inline-block mb-2 text-primary">User</strong>
-                                    <h3 class="mb-0">Featured post</h3>
-                                    <div class="mb-1 text-muted">Nov 12</div>
-                                    <p class="card-text mb-auto">
-                                        Sample content text
-                                    </p>
-                                    <a href="#" class="stretched-link">Continue reading</a>
-                                    <div class="mt-3 d-flex align-items-center">
-                                        <span class="me-4">
-                                            <i class="bi bi-heart text-danger hover-text-danger"></i>
-                                        </span>
-                                        <span class="ms-4">
-                                            <i class="bi bi-chat-dots text-primary hover-text-primary"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-auto d-none d-lg-block">
-                                    <img src="./img/up16.jpg" alt="User Image" width="150" height="200" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-2 align-items-stretch">
-                        <div class="col-md-6">
-                            <div
-                                class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                                <div class="col p-4 d-flex flex-column position-static postUser">
-                                    <strong class="d-inline-block mb-2 text-primary">User</strong>
-                                    <h3 class="mb-0">Featured post</h3>
-                                    <div class="mb-1 text-muted">Nov 12</div>
-                                    <p class="card-text mb-auto">
-                                        Sample content text
-                                    </p>
-                                    <a href="#" class="stretched-link">Continue reading</a>
-                                    <div class="mt-3 d-flex align-items-center">
-                                        <span class="me-4">
-                                            <i class="bi bi-heart text-danger hover-text-danger"></i>
-                                        </span>
-                                        <span class="ms-4">
-                                            <i class="bi bi-chat-dots text-primary hover-text-primary"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-auto d-none d-lg-block">
-                                    <img src="./img/up17.jpg" alt="User Image" width="150" height="200" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div
-                                class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                                <div class="col p-4 d-flex flex-column position-static postUser">
-                                    <strong class="d-inline-block mb-2 text-primary">User</strong>
-                                    <h3 class="mb-0">Featured post</h3>
-                                    <div class="mb-1 text-muted">Nov 12</div>
-                                    <p class="card-text mb-auto">
-                                        Sample content text
-                                    </p>
-                                    <a href="#" class="stretched-link">Continue reading</a>
-                                    <div class="mt-3 d-flex align-items-center">
-                                        <span class="me-4">
-                                            <i class="bi bi-heart text-danger hover-text-danger"></i>
-                                        </span>
-                                        <span class="ms-4">
-                                            <i class="bi bi-chat-dots text-primary hover-text-primary"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-auto d-none d-lg-block">
-                                    <img src="./img/up18.jpg" alt="User Image" width="150" height="200" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-2 align-items-stretch">
-                        <div class="col-md-6">
-                            <div
-                                class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                                <div class="col p-4 d-flex flex-column position-static postUser">
-                                    <strong class="d-inline-block mb-2 text-primary">User</strong>
-                                    <h3 class="mb-0">Featured post</h3>
-                                    <div class="mb-1 text-muted">Nov 12</div>
-                                    <p class="card-text mb-auto">
-                                        Sample content text
-                                    </p>
-                                    <a href="#" class="stretched-link">Continue reading</a>
-                                    <div class="mt-3 d-flex align-items-center">
-                                        <span class="me-4">
-                                            <i class="bi bi-heart text-danger hover-text-danger"></i>
-                                        </span>
-                                        <span class="ms-4">
-                                            <i class="bi bi-chat-dots text-primary hover-text-primary"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-auto d-none d-lg-block">
-                                    <img src="./img/up2.jpg" alt="User Image" width="150" height="200" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div
-                                class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                                <div class="col p-4 d-flex flex-column position-static postUser">
-                                    <strong class="d-inline-block mb-2 text-primary">User</strong>
-                                    <h3 class="mb-0">Featured post</h3>
-                                    <div class="mb-1 text-muted">Nov 12</div>
-                                    <p class="card-text mb-auto">
-                                        Sample content text
-                                    </p>
-                                    <a href="#" class="stretched-link">Continue reading</a>
-                                    <div class="mt-3 d-flex align-items-center">
-                                        <span class="me-4">
-                                            <i class="bi bi-heart text-danger hover-text-danger"></i>
-                                        </span>
-                                        <span class="ms-4">
-                                            <i class="bi bi-chat-dots text-primary hover-text-primary"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-auto d-none d-lg-block">
-                                    <img src="./img/up3.jpg" alt="User Image" width="150" height="200" />
-                                </div>
-                            </div>
-                        </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
-        </div>
-        </div>
-        </div>
     </main>
+
     <div class="row ">
         <div class="col">
             <div class="d-flex justify-content-center">
