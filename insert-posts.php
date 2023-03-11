@@ -41,7 +41,7 @@ if (isset($_POST["title"]) && isset($_POST["content"]) && isset($_FILES["image"]
         // alert user that post has been created
         echo "Post created successfully!";
         // redirect to posts page
-        header("Location: postsUser.php");
+        header("Location: userHomepage.php");
         exit;
     } else {
         die($mysqli->error . " " . $mysqli->errno);
