@@ -31,7 +31,9 @@ $mysqli->close();
             <a class="navbar-brand" href="#">
                 <img src="./img/logo.png" alt="..." height="80" />
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -65,23 +67,24 @@ $mysqli->close();
         </div>
         <div class="row mb-2 align-items-stretch">
             <?php foreach ($posts as $post) : ?>
-                <div class="col-md-6">
-                    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                        <div class="col p-4 d-flex flex-column position-static postUser">
-                            <h3 class="mb-0"><?php echo $post["title"]; ?></h3>
-                            <?php echo substr($post['content'], 0, 100) . '...'; ?>
-                            <a href="/404page.php" class="stretched-link">Continue reading</a>
-                            <div class="mt-3 d-flex align-items-center">
-                                <span class="me-4"><i class="bi bi-heart text-danger hover-text-danger"></i></span>
-                                <span class="ms-4"><i class="bi bi-chat-dots text-primary hover-text-primary"></i></span>
-                            </div>
+            <div class="col-md-6">
+                <div
+                    class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="col p-4 d-flex flex-column position-static postUser">
+                        <h3 class="mb-0"><?php echo $post["title"]; ?></h3>
+                        <?php echo substr($post['content'], 0, 100) . '...'; ?>
+                        <a href="/signin.php" class="stretched-link">Continue reading</a>
+                        <div class="mt-3 d-flex align-items-center">
+                            <span class="me-4"><i class="bi bi-heart text-danger hover-text-danger"></i></span>
+                            <span class="ms-4"><i class="bi bi-chat-dots text-primary hover-text-primary"></i></span>
                         </div>
-                        <div class="col-md-6 col-lg-4 d-flex align-items-center p-2">
-                            <img src="<?php echo $post["image"]; ?>" alt="User Image" class="img-fluid" />
-                        </div>
-
                     </div>
+                    <div class="col-md-6 col-lg-4 d-flex align-items-center p-2">
+                        <img src="<?php echo $post["image"]; ?>" alt="User Image" class="img-fluid" />
+                    </div>
+
                 </div>
+            </div>
             <?php endforeach; ?>
         </div>
         </div>
