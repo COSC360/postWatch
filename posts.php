@@ -80,7 +80,7 @@ $mysqli->close();
                         <div class="col p-4 d-flex flex-column position-static postUser">
                             <h3 class="mb-0"><?php echo $post["title"]; ?></h3>
                             <?php echo substr($post['content'], 0, 100) . '...'; ?>
-                            <a href="#" class="stretched-link">Continue reading</a>
+                            <a href="signup.php" class="stretched-link">Continue reading</a>
                             <div class="mt-3 d-flex align-items-center">
                                 <span class="me-4"><i class="bi bi-heart text-danger hover-text-danger"></i></span>
                                 <span class="ms-4"><i class="bi bi-chat-dots text-primary hover-text-primary"></i></span>
