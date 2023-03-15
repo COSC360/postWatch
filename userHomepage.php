@@ -95,7 +95,14 @@ if (!isset($_SESSION['user_id'])) {
             <div class="row">
                 <nav class="col-3 bg-light sidebar bg-dark">
                     <div class="text-center my-4">
-                        <img src="./img/userProimg.jpg" alt="User Image" class="rounded-circle" width="100" height="100">
+                        <?php if ($user['profile_pic'] != null) { ?>
+                            <img src="<?php echo $user['profile_pic']; ?>" alt="User Image" class="rounded-circle" width="100" height="100">
+                        <?php } else { ?>
+                            <img src="./img/userProimg.jpg" alt="User Image" class="rounded-circle" width="100" height="100">
+                        <?php }
+
+
+                        ?>
                         <h4 style="color:rgb(222, 235, 241);font-size:24px;"><?php echo $user['username']; ?> </h4>
                     </div>
                     <ul class="nav flex-column navbar-nav">
