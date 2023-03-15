@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 15, 2023 at 11:45 PM
+-- Generation Time: Mar 15, 2023 at 11:51 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -105,8 +105,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `username`, `email`, `password_hashed`) VALUES
 (1, 'usernenen', 'tushanshahid0@gmail.com', '$2y$10$Zbtni6C5Xewti3OS3tJKUOnU.P4KHYa10cdVymOZMeduh..dCxYmi'),
-(5, 'Top G', 'topg@email.com', '$2y$10$6d4OoIZz1fjh8WXpH.rqXOpjbAkLosLH/LMQQPRgcBHSD7PIFYRW.'),
-(7, 'Top G2', 'topg2@email.com', '$2y$10$cEjFCiZLOcNeJqgvnYN.t.NOQt0k5INAF9SK2d2Jm3SXCd6eqwI72');
+(8, 'Top G', 'topg@email.com', '$2y$10$b5fdcaJpAf8GsT3gvVxhhezFQ4bi6orA926coCYOe3ph2Hr.4BZjG'),
+(9, 'Top G2', 'topg2@email.com', '$2y$10$5PxxOIHNvXaXIQ3ryKt27OLqaUjkhb87NmIoIovLPKNySEDCTSHiy');
 
 --
 -- Indexes for dumped tables
@@ -181,7 +181,7 @@ ALTER TABLE `post`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
