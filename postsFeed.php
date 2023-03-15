@@ -7,19 +7,11 @@ if (!isset($_SESSION['user_id'])) {
 } else {
     $mysqli = require __DIR__ . '/database.php';
 
-    $sql = "SELECT * FROM user";
-    $result = $mysqli->query($sql);
-    $user = $result->fetch_assoc();
-
-    $sql = "SELECT * FROM post";
-    $result = $mysqli->query($sql);
-    $posts = array();
-
-    while ($row = $result->fetch_assoc()) {
-        $posts[] = $row;
-    }
-
-    $mysqli->close();
+    // get all posts and their authors from post table user user_id which is the foreign key in post table connecting to user table 
+    $statement = $mysqli->prepare("SELECT post.id, post.title, post.content, post.image, post.date, user.username FROM post INNER JOIN user ON post.user_id = user.id ORDER BY post.date DESC");
+    $statement->execute();
+    $statement->bind_result($id, $title, $content, $image, $date, $username);
+    $posts = $statement->get_result()->fetch_all(MYSQLI_ASSOC);
 }
 ?>
 
@@ -49,7 +41,9 @@ if (!isset($_SESSION['user_id'])) {
             <a class="navbar-brand" href="#">
                 <img src="./img/logo.png" alt="..." height="80" />
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -74,25 +68,29 @@ if (!isset($_SESSION['user_id'])) {
         </div>
         <div class="row mb-2 align-items-stretch">
             <?php foreach ($posts as $post) : ?>
-                <div class="col-md-6">
-                    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                        <div class="col p-4 d-flex flex-column position-static postUser">
-                            <strong class="d-inline-block mb-2 text-primary"><?php echo $user["username"]; ?></strong>
-                            <h3 class="mb-0"><?php echo $post["title"]; ?></h3>
-                            <div class="mb-1 text-muted"><?php echo date("F j, Y", strtotime($post["date"])); ?></div>
-                            <?php echo substr($post['content'], 0, 100) . '...'; ?>
-                            <a href="#" class="stretched-link">Continue reading</a>
-                            <div class="mt-3 d-flex align-items-center">
-                                <span class="me-4"><i class="bi bi-heart text-danger hover-text-danger"></i></span>
-                                <span class="ms-4"><i class="bi bi-chat-dots text-primary hover-text-primary"></i></span>
-                            </div>
+            <div class="col-md-6">
+                <div
+                    class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="col p-4 d-flex flex-column position-static postUser">
+                        <strong class="d-inline-block mb-2 text-primary">
+                            <?php echo $post["username"];
+                                ?>
+                        </strong>
+                        <h3 class="mb-0"><?php echo $post["title"]; ?></h3>
+                        <div class="mb-1 text-muted"><?php echo date("F j, Y", strtotime($post["date"])); ?></div>
+                        <?php echo substr($post['content'], 0, 100) . '...'; ?>
+                        <a href="#" class="stretched-link">Continue reading</a>
+                        <div class="mt-3 d-flex align-items-center">
+                            <span class="me-4"><i class="bi bi-heart text-danger hover-text-danger"></i></span>
+                            <span class="ms-4"><i class="bi bi-chat-dots text-primary hover-text-primary"></i></span>
                         </div>
-                        <div class="col-md-6 col-lg-4 d-flex align-items-center p-2">
-                            <img src="<?php echo $post["image"]; ?>" alt="User Image" class="img-fluid" />
-                        </div>
-
                     </div>
+                    <div class="col-md-6 col-lg-4 d-flex align-items-center p-2">
+                        <img src="<?php echo $post["image"]; ?>" alt="User Image" class="img-fluid" />
+                    </div>
+
                 </div>
+            </div>
             <?php endforeach; ?>
         </div>
     </main>
