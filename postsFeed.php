@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_id'])) {
 } else {
     $mysqli = require __DIR__ . '/database.php';
 
-    $sql = "SELECT * FROM user WHERE id = " . $_SESSION['user_id'];
+    $sql = "SELECT * FROM user";
     $result = $mysqli->query($sql);
     $user = $result->fetch_assoc();
 
