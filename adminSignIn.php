@@ -90,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </div>
             <hr />
             <p class="text-center small">
-                Don't have an account? <a href="adminSignUp.php">Admin Sign Up</a>
+                Don't have an account? <a href="about.php">Contact Us</a> for access.
             </p>
         </form>
     </div>
