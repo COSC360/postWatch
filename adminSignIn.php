@@ -2,6 +2,8 @@
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
+    var_dump($_POST);
+
     $mysqli = require __DIR__ . '/database.php';
 
     $sql = sprintf("SELECT * FROM admin WHERE username = '%s'", $mysqli->real_escape_string($_POST['username']));
@@ -68,16 +70,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <body>
     <div class="d-flex flex-column align-items-center mt-5">
         <h1 class="text-center">Admin Sign In</h1>
-        <form class="w-50">
+        <form class="w-50" method="POST">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" class="form-control" id="username" aria-describedby="usernameHelp"
-                    placeholder="Enter username" required />
+                    placeholder="Enter username" required name="username" />
             </div>
 
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Password" required />
+                <input type="password" class="form-control" id="password" placeholder="Password" required
+                    name="password" />
             </div>
             <br />
             <div class="d-flex justify-content-center">

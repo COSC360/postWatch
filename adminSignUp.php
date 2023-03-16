@@ -39,19 +39,22 @@
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" class="form-control" id="username" aria-describedby="usernameHelp"
-                    placeholder="Enter username" required />
+                    placeholder="Enter username" required name="username" />
             </div>
             <div class="form-group">
                 <label for="email">Email id</label>
-                <input type="text" class="form-control" id="email" placeholder="Enter your email" required />
+                <input type="text" class="form-control" id="email" placeholder="Enter your email" required
+                    name="email" />
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Password" required />
+                <input type="password" class="form-control" id="password" placeholder="Password" required
+                    name="password" />
             </div>
             <div class="form-group">
                 <label for="confirmPassword">Confirm Password</label>
-                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" />
+                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password"
+                    name="confirmPassword" />
             </div>
             <br />
             <div class="d-flex justify-content-center">

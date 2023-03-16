@@ -1,5 +1,8 @@
 <?php
 
+var_dump($_POST);
+
+
 // hashed password to be stored in database
 $password_hashed = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
