@@ -35,7 +35,7 @@
 <body>
     <div class="d-flex flex-column align-items-center mt-5">
         <h1 class="text-center">Admin Sign Up</h1>
-        <form class="w-50">
+        <form class="w-50" action="proc-adsignup.php" method="POST">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" class="form-control" id="username" aria-describedby="usernameHelp"

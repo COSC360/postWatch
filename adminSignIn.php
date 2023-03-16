@@ -1,3 +1,34 @@
+<?php
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+    $mysqli = require __DIR__ . '/database.php';
+
+    $sql = sprintf("SELECT * FROM admin WHERE username = '%s'", $mysqli->real_escape_string($_POST['username']));
+
+    $result = $mysqli->query($sql);
+
+    $admin = $result->fetch_assoc();
+
+    if ($admin) {
+        if (password_verify($_POST['password'], $admin['password_hashed'])) {
+            session_start();
+            session_regenerate_id();
+            $_SESSION['admin_id'] = $admin['id'];
+            header("Location: adminHome.php");
+            exit;
+        } else {
+            die("Incorrect password!");
+        }
+    } else {
+        die("Admin does not exist.");
+    }
+
+    // var_dump($admin);
+    // exit;
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
