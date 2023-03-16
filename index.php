@@ -56,7 +56,7 @@
                     </div>
                     <div class="carousel-inner my-5">
                         <div class="carousel-item active">
-                            <img src="./img/watchH1.jpg" class="d-block w-100" alt="...">
+                            <img src="./img/watchH1.jpg" class="d-block w-100 rounded" alt="...">
                             <div class="carousel-caption d-none d-md-block blocki">
                                 <h5>"What's your favorite watch brand and why?"</h5>
                                 <p> In this thread, members can discuss their favorite watch brands and models, and
@@ -66,7 +66,7 @@
                             </div>
                         </div>
                         <div class="carousel-item">
-                            <img src="./img/watchH2.jpg" class="d-block w-100" alt="...">
+                            <img src="./img/watchH2.jpg" class="d-block w-100 rounded" alt="...">
                             <div class="carousel-caption d-none d-md-block blocki">
                                 <h5>"Vintage watch finds"</h5>
                                 <p> Hunting for vintage watches can be a thrilling experience for many watch
@@ -76,7 +76,7 @@
                             </div>
                         </div>
                         <div class="carousel-item">
-                            <img src="./img/watchH3.jpg" class="d-block w-100" alt="...">
+                            <img src="./img/watchH3.jpg" class="d-block w-100 rounded" alt="...">
                             <div class="carousel-caption d-none d-md-block blocki">
                                 <h5>"Watch photography tips"</h5>
                                 <p>Taking great photos of watches can be a challenge, but it's an important skill for
