@@ -1,3 +1,17 @@
+<?php
+
+session_start();
+
+if (!isset($_SESSION['admin_id'])) {
+    header("Location: index.php");
+    exit;
+}
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,7 +43,7 @@
                         <a class="nav-link" href="">Profile Settings</a>
                     </li>
                     <li>
-                        <a href="signin.php">
+                        <a href="logout.php">
                             <button type="button" class="btn btn-outline-secondary btn-sm px-4">
                                 Sign Out
                             </button></a>
