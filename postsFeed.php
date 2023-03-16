@@ -64,6 +64,10 @@ if (!isset($_SESSION['user_id'])) {
             <div class="col-md-6 mx-auto text-center">
                 <h1 class="display-4 fst-italic">Posts Feed</h1>
                 <p class="lead my-3">Discover and read everyone's latest posts here</p>
+                <button class="btn btn-primary" onclick="location.href='userHomepage.php'"><i
+                        class="bi bi-arrow-left"></i> Go
+                    Back Home</button>
+
             </div>
         </div>
         <div class="row mb-2 align-items-stretch">
