@@ -2,8 +2,6 @@
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    var_dump($_POST);
-
     $mysqli = require __DIR__ . '/database.php';
 
     $sql = sprintf("SELECT * FROM admin WHERE username = '%s'", $mysqli->real_escape_string($_POST['username']));
@@ -49,9 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <a class="navbar-brand" href="#">
                 <img src="./img/logo.png" alt="..." height="80" />
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -73,14 +69,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <form class="w-50" method="POST">
             <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" aria-describedby="usernameHelp"
-                    placeholder="Enter username" required name="username" />
+                <input type="text" class="form-control" id="username" aria-describedby="usernameHelp" placeholder="Enter username" required name="username" />
             </div>
 
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Password" required
-                    name="password" />
+                <input type="password" class="form-control" id="password" placeholder="Password" required name="password" />
             </div>
             <br />
             <div class="d-flex justify-content-center">
