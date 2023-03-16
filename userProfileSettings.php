@@ -27,18 +27,15 @@ if (!isset($_SESSION['user_id'])) {
 
     $mysqli->close();
 }
-
 ?>
 
-
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User-Settings</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
     .navbar-nav .nav-link:hover {
         background-color: #3d464e;
@@ -55,7 +52,7 @@ if (!isset($_SESSION['user_id'])) {
     }
     </style>
 
-    <title>User-Homepage</title>
+
     <link rel="stylesheet" href="path/to/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -138,93 +135,22 @@ if (!isset($_SESSION['user_id'])) {
 
 
                 <div class="col-9">
-                    <h1> Your Posts </h1>
-                    <div class="row mb-2">
-                        <?php foreach ($posts as $post) { ?>
-                        <div class="col-md-6">
-                            <div
-                                class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                                <div class="col p-4 d-flex flex-column position-static postUser">
-                                    <strong
-                                        class="d-inline-block mb-2 text-primary"><?php echo $user['username'] ?></strong>
-                                    <h3 class="mb-0"><?php echo $post['title']; ?></h3>
-                                    <div class="mb-1 text-muted"><?php echo $post['date']; ?></div>
-                                    <p class="card-text mb-auto">
-                                        <?php echo substr($post['content'], 0, 100) . '...'; ?>
-                                    </p>
-                                    <a href="#" class="stretched-link">Continue reading</a>
-                                    <div class="mt-3 d-flex align-items-center">
-                                        <span class="me-4"><i
-                                                class="bi bi-heart text-danger hover-text-danger"></i></span>
-                                        <span class="ms-4"><i
-                                                class="bi bi-chat-dots text-primary hover-text-primary"></i></span>
-                                    </div>
-                                </div>
-                                <div class="col-auto d-none d-lg-block mx-auto p-2 text-center">
-                                    <img src="<?php echo $post['image']; ?>" alt="Post image" width="300" height="200">
-                                </div>
-                            </div>
-                        </div>
-                        <?php } ?>
-                    </div>
+                    <h1> Profile Settings </h1>
+                    <br>
+                    <form action="update-user-profile.php" method="POST" enctype="multipart/form-data">
+
+                        <label for="profile_pic">Update Profile Picture:</label>
+                        <input type="file" id="profile_pic" name="profile_pic">
+                        <br>
+                    </form>
+
                 </div>
             </div>
         </div>
+        </div>
     </main>
 
-    <div class="row ">
-        <div class="col">
-            <div class="d-flex justify-content-center">
-                <nav aria-label="Page navigation">
-                    <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">1</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">2</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </div>
+
 </body>
-
-<div class="container">
-    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-        <p class="col-md-4 mb-0 text-muted">&copy; 2023 PostWatch</p>
-
-        <ul class="nav col-md-4 justify-content-end">
-            <li class="nav-item">
-                <a href="#" class="nav-link px-2 text-muted">Home</a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link px-2 text-muted">FAQs</a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link px-2 text-muted">About</a>
-            </li>
-        </ul>
-
-    </footer>
-    <hr class="my-2" />
-</div>
-
-
 
 </html>
