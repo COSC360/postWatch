@@ -11,7 +11,9 @@
     <script src="https://kit.fontawesome.com/ff48066121.js" crossorigin="anonymous"></script>
     <script src="./css/bootstrap-5.3.0-alpha1/bootstrap-5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js" integrity="sha512-TNjCaZG8XT9Yi+a51/qH0PCv1nWnkz8oACaA0MwJ+IaZoydP8Cl9Ok40J51fEySWtTzI+1fTJnoh75AIrDMPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"
+        integrity="sha512-TNjCaZG8XT9Yi+a51/qH0PCv1nWnkz8oACaA0MwJ+IaZoydP8Cl9Ok40J51fEySWtTzI+1fTJnoh75AIrDMPQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="./css/styles.css" />
 </head>
 
@@ -30,10 +32,13 @@
                     <input type="text" class="form-control" id="title" name="title" placeholder="Title" />
 
                     <label for="content" class="form-label">Content</label>
-                    <textarea class="form-control" id="content" name="content" rows="3" placeholder="Content"></textarea>
+                    <textarea class="form-control" id="content" name="content" rows="3"
+                        placeholder="Content"></textarea>
 
                     <label for="image" class="form-label">Image</label>
                     <input type="file" class="form-control" id="image" name="image" placeholder="Upload Image" />
+                    <p class="h6">Only add landscape images</p>
+
                 </div>
 
                 <div class="modal-footer flex-column border-top-0">
