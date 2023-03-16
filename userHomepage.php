@@ -40,19 +40,19 @@ if (!isset($_SESSION['user_id'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
-        .navbar-nav .nav-link:hover {
-            background-color: #3d464e;
-            border-radius: 10%;
+    .navbar-nav .nav-link:hover {
+        background-color: #3d464e;
+        border-radius: 10%;
 
-        }
+    }
 
-        .btn:hover {
-            background-color: #f1f1f1;
-        }
+    .btn:hover {
+        background-color: #f1f1f1;
+    }
 
-        .btn i {
-            margin-right: 5px;
-        }
+    .btn i {
+        margin-right: 5px;
+    }
     </style>
 
     <title>User-Homepage</title>
@@ -71,7 +71,9 @@ if (!isset($_SESSION['user_id'])) {
             <a class="navbar-brand" href="#">
                 <img src="./img/logo.png" alt="..." height="80" />
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -98,9 +100,11 @@ if (!isset($_SESSION['user_id'])) {
                 <nav class="col-3 bg-light sidebar bg-dark rounded">
                     <div class="text-center my-4">
                         <?php if ($user['profile_pic'] != null) { ?>
-                            <img src="<?php echo $user['profile_pic']; ?>" alt="User Image" class="rounded-circle" width="100" height="100">
+                        <img src="<?php echo $user['profile_pic']; ?>" alt="User Image" class="rounded-circle"
+                            width="100" height="100">
                         <?php } else { ?>
-                            <img src="./img/userProimg.jpg" alt="User Image" class="rounded-circle" width="100" height="100">
+                        <img src="./img/userProimg.jpg" alt="User Image" class="rounded-circle" width="100"
+                            height="100">
                         <?php }
 
 
@@ -137,26 +141,30 @@ if (!isset($_SESSION['user_id'])) {
                     <h1> Your Posts </h1>
                     <div class="row mb-2">
                         <?php foreach ($posts as $post) { ?>
-                            <div class="col-md-6">
-                                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                                    <div class="col p-4 d-flex flex-column position-static postUser">
-                                        <strong class="d-inline-block mb-2 text-primary"><?php echo $user['username'] ?></strong>
-                                        <h3 class="mb-0"><?php echo $post['title']; ?></h3>
-                                        <div class="mb-1 text-muted"><?php echo $post['date']; ?></div>
-                                        <p class="card-text mb-auto">
-                                            <?php echo substr($post['content'], 0, 100) . '...'; ?>
-                                        </p>
-                                        <a href="#" class="stretched-link">Continue reading</a>
-                                        <div class="mt-3 d-flex align-items-center">
-                                            <span class="me-4"><i class="bi bi-heart text-danger hover-text-danger"></i></span>
-                                            <span class="ms-4"><i class="bi bi-chat-dots text-primary hover-text-primary"></i></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-auto d-none d-lg-block mx-auto p-2 text-center">
-                                        <img src="<?php echo $post['image']; ?>" alt="Post image" width="300" height="200">
+                        <div class="col-md-6">
+                            <div
+                                class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                                <div class="col p-4 d-flex flex-column position-static postUser">
+                                    <strong
+                                        class="d-inline-block mb-2 text-primary"><?php echo $user['username'] ?></strong>
+                                    <h3 class="mb-0"><?php echo $post['title']; ?></h3>
+                                    <div class="mb-1 text-muted"><?php echo $post['date']; ?></div>
+                                    <p class="card-text mb-auto">
+                                        <?php echo substr($post['content'], 0, 100) . '...'; ?>
+                                    </p>
+                                    <a href="#" class="stretched-link">Continue reading</a>
+                                    <div class="mt-3 d-flex align-items-center">
+                                        <span class="me-4"><i
+                                                class="bi bi-heart text-danger hover-text-danger"></i></span>
+                                        <span class="ms-4"><i
+                                                class="bi bi-chat-dots text-primary hover-text-primary"></i></span>
                                     </div>
                                 </div>
+                                <div class="col-auto d-none d-lg-block mx-auto p-2 text-center">
+                                    <img src="<?php echo $post['image']; ?>" alt="Post image" width="300" height="200">
+                                </div>
                             </div>
+                        </div>
                         <?php } ?>
                     </div>
                 </div>
