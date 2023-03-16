@@ -97,7 +97,7 @@ if (!isset($_SESSION['user_id'])) {
     <main class="container mt-3">
         <div class="container-fluid">
             <div class="row">
-                <nav class="col-3 bg-light sidebar bg-dark rounded">
+                <nav class="col-md-3 col-lg-2 bg-light sidebar bg-dark rounded">
                     <div class="text-center my-4">
                         <?php if ($user['profile_pic'] != null) { ?>
                         <img src="<?php echo $user['profile_pic']; ?>" alt="User Image" class="rounded-circle"
@@ -105,10 +105,7 @@ if (!isset($_SESSION['user_id'])) {
                         <?php } else { ?>
                         <img src="./img/userProimg.jpg" alt="User Image" class="rounded-circle" width="100"
                             height="100">
-                        <?php }
-
-
-                        ?>
+                        <?php } ?>
                         <h4 style="color:rgb(222, 235, 241);font-size:24px;"><?php echo $user['username']; ?> </h4>
                     </div>
                     <ul class="nav flex-column navbar-nav text-center">

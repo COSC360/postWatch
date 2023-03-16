@@ -37,19 +37,19 @@ if (!isset($_SESSION['user_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-    .navbar-nav .nav-link:hover {
-        background-color: #3d464e;
-        border-radius: 10%;
+        .navbar-nav .nav-link:hover {
+            background-color: #3d464e;
+            border-radius: 10%;
 
-    }
+        }
 
-    .btn:hover {
-        background-color: #f1f1f1;
-    }
+        .btn:hover {
+            background-color: #f1f1f1;
+        }
 
-    .btn i {
-        margin-right: 5px;
-    }
+        .btn i {
+            margin-right: 5px;
+        }
     </style>
 
 
@@ -68,9 +68,7 @@ if (!isset($_SESSION['user_id'])) {
             <a class="navbar-brand" href="#">
                 <img src="./img/logo.png" alt="..." height="80" />
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -94,18 +92,13 @@ if (!isset($_SESSION['user_id'])) {
     <main class="container mt-3">
         <div class="container-fluid">
             <div class="row">
-                <nav class="col-3 bg-light sidebar bg-dark rounded">
+                <nav class="col-md-3 col-lg-2 bg-light sidebar bg-dark rounded">
                     <div class="text-center my-4">
                         <?php if ($user['profile_pic'] != null) { ?>
-                        <img src="<?php echo $user['profile_pic']; ?>" alt="User Image" class="rounded-circle"
-                            width="100" height="100">
+                            <img src="<?php echo $user['profile_pic']; ?>" alt="User Image" class="rounded-circle" width="100" height="100">
                         <?php } else { ?>
-                        <img src="./img/userProimg.jpg" alt="User Image" class="rounded-circle" width="100"
-                            height="100">
-                        <?php }
-
-
-                        ?>
+                            <img src="./img/userProimg.jpg" alt="User Image" class="rounded-circle" width="100" height="100">
+                        <?php } ?>
                         <h4 style="color:rgb(222, 235, 241);font-size:24px;"><?php echo $user['username']; ?> </h4>
                     </div>
                     <ul class="nav flex-column navbar-nav text-center">
@@ -152,5 +145,26 @@ if (!isset($_SESSION['user_id'])) {
 
 
 </body>
+
+<div class="container">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <p class="col-md-4 mb-0 text-muted">&copy; 2023 PostWatch</p>
+
+        <ul class="nav col-md-4 justify-content-end">
+            <li class="nav-item">
+                <a href="#" class="nav-link px-2 text-muted">Home</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link px-2 text-muted">FAQs</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link px-2 text-muted">About</a>
+            </li>
+        </ul>
+
+    </footer>
+    <hr class="my-2" />
+</div>
+
 
 </html>
