@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 16, 2023 at 12:49 AM
+-- Generation Time: Mar 16, 2023 at 07:04 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -35,6 +35,13 @@ CREATE TABLE `admin` (
   `email` varchar(255) NOT NULL,
   `password_hashed` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id`, `username`, `email`, `password_hashed`) VALUES
+(1, 'AdminTopG', 'admin@admin.com', '$2y$10$Oi/dBuSNYANkiSG8/JTQTOoxS3jME6geu0A0NcadyG2jfYqaNMvg6');
 
 -- --------------------------------------------------------
 
@@ -160,7 +167,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `comments`
