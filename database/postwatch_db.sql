@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 16, 2023 at 07:04 PM
+-- Generation Time: Mar 18, 2023 at 04:09 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -115,7 +115,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `username`, `email`, `password_hashed`, `profile_pic`) VALUES
 (1, 'usernenen', 'tushanshahid0@gmail.com', '$2y$10$Zbtni6C5Xewti3OS3tJKUOnU.P4KHYa10cdVymOZMeduh..dCxYmi', NULL),
-(8, 'Top G', 'topg@email.com', '$2y$10$b5fdcaJpAf8GsT3gvVxhhezFQ4bi6orA926coCYOe3ph2Hr.4BZjG', NULL),
+(8, 'Top G', 'topg@email.com', '$2y$10$b5fdcaJpAf8GsT3gvVxhhezFQ4bi6orA926coCYOe3ph2Hr.4BZjG', 0x75706c6f6164732f70726f506963312e6a7067),
 (9, 'Top G2', 'topg2@email.com', '$2y$10$5PxxOIHNvXaXIQ3ryKt27OLqaUjkhb87NmIoIovLPKNySEDCTSHiy', NULL);
 
 --
