@@ -27,19 +27,19 @@ if (!isset($_SESSION['user_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        .navbar-nav .nav-link:hover {
-            background-color: #3d464e;
-            border-radius: 10%;
+    .navbar-nav .nav-link:hover {
+        background-color: #3d464e;
+        border-radius: 10%;
 
-        }
+    }
 
-        .btn:hover {
-            background-color: #f1f1f1;
-        }
+    .btn:hover {
+        background-color: #f1f1f1;
+    }
 
-        .btn i {
-            margin-right: 5px;
-        }
+    .btn i {
+        margin-right: 5px;
+    }
     </style>
 
 
@@ -58,7 +58,9 @@ if (!isset($_SESSION['user_id'])) {
             <a class="navbar-brand" href="#">
                 <img src="./img/logo.png" alt="..." height="80" />
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -85,9 +87,11 @@ if (!isset($_SESSION['user_id'])) {
                 <nav class="col-md-3 col-lg-2 bg-light sidebar bg-dark rounded">
                     <div class="text-center my-4">
                         <?php if ($user['profile_pic'] != null) { ?>
-                            <img src="<?php echo $user['profile_pic']; ?>" alt="User Image" class="rounded-circle" width="100" height="100">
+                        <img src="<?php echo $user['profile_pic']; ?>" alt="User Image" class="rounded-circle"
+                            width="100" height="100">
                         <?php } else { ?>
-                            <img src="./img/userProimg.jpg" alt="User Image" class="rounded-circle" width="100" height="100">
+                        <img src="./img/userProimg.jpg" alt="User Image" class="rounded-circle" width="100"
+                            height="100">
                         <?php } ?>
                         <h4 style="color:rgb(222, 235, 241);font-size:24px;"><?php echo $user['username']; ?> </h4>
                     </div>
@@ -125,6 +129,7 @@ if (!isset($_SESSION['user_id'])) {
                         <label for="profile_pic">Update Profile Picture:</label>
                         <input type="file" id="profile_pic" name="profile_pic">
                         <br>
+                        <button type="submit" class="btn btn-primary">Update Profile Picture</button>
                     </form>
 
                 </div>
