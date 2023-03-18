@@ -129,7 +129,7 @@ if (!isset($_SESSION['user_id'])) {
                         <label for="profile_pic">Update Profile Picture:</label>
                         <input type="file" id="profile_pic" name="profile_pic">
                         <br>
-                        <button type="submit" class="btn btn-primary">Update Profile Picture</button>
+                        <button type="submit" class="btn btn-primary mt-2">Update Profile Picture</button>
                     </form>
 
                 </div>
