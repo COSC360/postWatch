@@ -3,15 +3,16 @@ session_start();
 if (!isset($_SESSION['admin_id'])) {
     header("Location: index.php");
     exit;
-}
-include "config.php";
-if ($conn !== null) {
-    $sql = "SELECT * FROM users";
-    $result = $conn->query($sql);
+} elseif (isset($_SESSION["admin_id"])) {
+    $mysqli =  require __DIR__ . '/database.php';
+    $sql = "SELECT * FROM user";
+    $result = $mysqli->query($sql);
+    $mysqli->close();
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -22,6 +23,7 @@ if ($conn !== null) {
     <script src="./css/bootstrap-5.3.0-alpha1/bootstrap-5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="./css/styles.css" />
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-white static-top">
         <div class="container">
@@ -78,31 +80,34 @@ if ($conn !== null) {
                     }
                     ?>
                 </tbody>
-                </table>
-</div>
-<script src="./js/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-<script src="./js/scripts.js"></script>
-<script>
-    function suspendUser(id) {
-        if (confirm("Are you sure you want to suspend this user?")) {
-            $.ajax({
-                url: "suspend_user.php",
-                type: "POST",
-                data: { id: id },
-                success: function (response) {
-                    if (response == "success") {
-                        alert("User suspended successfully.");
-                        location.reload();
-                    } else {
-                        alert("An error occurred. Please try again.");
-                    }
-                },
-                error: function () {
-                    alert("An error occurred. Please try again.");
-                },
-            });
-        }
-    }
-</script>
+            </table>
+        </div>
+        <script src="./js/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+        <script src="./js/scripts.js"></script>
+        <script>
+            function suspendUser(id) {
+                if (confirm("Are you sure you want to suspend this user?")) {
+                    $.ajax({
+                        url: "suspend_user.php",
+                        type: "POST",
+                        data: {
+                            id: id
+                        },
+                        success: function(response) {
+                            if (response == "success") {
+                                alert("User suspended successfully.");
+                                location.reload();
+                            } else {
+                                alert("An error occurred. Please try again.");
+                            }
+                        },
+                        error: function() {
+                            alert("An error occurred. Please try again.");
+                        },
+                    });
+                }
+            }
+        </script>
 </body>
+
 </html>
