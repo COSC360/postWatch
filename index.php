@@ -6,18 +6,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>home</title>
+    <style>
+      #clock {
+        font-size: 36px;
+        font-weight: bold;
+        text-align: center;
+      }
+    </style>
     <link rel="stylesheet" href="./css/heroWatch.css" />
     <link rel="stylesheet" href="./css/bootstrap-5.3.0-alpha1/bootstrap-5.3.0-alpha1/dist/css/bootstrap.min.css" />
     <script src="https://kit.fontawesome.com/ff48066121.js" crossorigin="anonymous"></script>
     <script src="./css/bootstrap-5.3.0-alpha1/bootstrap-5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="./css/styles.css" />
-
+    <link rel="stylesheet" href="./css/heroWatch.css" />
     <nav class="navbar navbar-expand-lg navbar-light bg-white static-top">
         <div class="container">
             <a class="navbar-brand" href="#">
                 <img src="./img/logo.png" alt="..." height="80" />
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -42,7 +51,7 @@
 </head>
 <main>
 
-    <body>
+    <body onload="startTime()">
         <div class="px-4 py-5 my-2 text-center container">
             <h1 class="pb-2 border-bottom">
                 Join a Community of Watch Enthusiasts
@@ -50,9 +59,12 @@
             <section class="featured-collections">
                 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
+                            class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
                     </div>
                     <div class="carousel-inner my-5">
                         <div class="carousel-item active">
@@ -88,11 +100,13 @@
                             </div>
                         </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
@@ -111,122 +125,131 @@
                         See Posts
                     </a>
                 </div>
-                <div class="ccccenter my-5">
-                    <div class="face">
-                        <p class="v-index">II</p>
-                        <p class="h-index">II</p>
-                        <div class="hand">
-                            <div class="hand">
-                                <div class="hour"></div>
-                                <div class="minute"></div>
-                                <div class="second"></div>
-                            </div>
-                        </div>
+                <div id="clock"></div>
+            </div>
+        </div>
+        </div>
+        </div>
+        <hr class="my-4" />
+
+        <div class="container px-4 py-5">
+            <h2 class="pb-2 border-bottom">Features</h2>
+
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
+                <div class="col d-flex align-items-start">
+                    <div>
+                        <i class="fa-sharp fa-solid fa-folder fa-2x"></i>
+                        <h3 class="fw-bold mb-0 fs-4">
+                            Personalized Watch Collections:
+                        </h3>
+                        <p>
+                            With PostWatch, users can create their own personalized watch
+                            collections to showcase their favorite timepieces. They can
+                            upload photos and descriptions, and share their collections.
+                        </p>
+                    </div>
+                </div>
+                <div class="col d-flex align-items-start">
+                    <div>
+                        <i class="fa-sharp fa-solid fa-circle-nodes fa-2x"></i>
+                        <h3 class="fw-bold mb-0 fs-4">Social Networking:</h3>
+                        <p>
+                            PostWatch is a community-driven site where users can connect
+                            with other watch enthusiasts from around the world. Users can
+                            view and like other user collections, and leave comments or
+                            feedback.
+                        </p>
+                    </div>
+                </div>
+                <div class="col d-flex align-items-start">
+                    <div>
+                        <i class="fa-sharp fa-solid fa-user fa-2x"></i>
+                        <h3 class="fw-bold mb-0 fs-4">User Profiles:</h3>
+                        <p>
+                            Each user has their own profile page where they can display
+                            their watch collections, and view their feed, and access their
+                            account settings.
+                        </p>
+                    </div>
+                </div>
+                <div class="col d-flex align-items-start">
+                    <div>
+                        <i class="fa-sharp fa-solid fa-mobile fa-2x"></i>
+                        <h3 class="fw-bold mb-0 fs-4">Mobile-Friendly:</h3>
+                        <p>
+                            PostWatch is optimized for mobile devices, making it easy to
+                            access and use on the go.
+                        </p>
                     </div>
                 </div>
             </div>
-            <hr class="my-4" />
+            <hr class="my-5" />
+        </div>
+        <div class="container px-4 py-5">
+            <h2 class="pb-2 border-bottom">Community Guidelines</h2>
+            <br>
 
-            <div class="container px-4 py-5">
-                <h2 class="pb-2 border-bottom">Features</h2>
-
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
-                    <div class="col d-flex align-items-start">
-                        <div>
-                            <i class="fa-sharp fa-solid fa-folder fa-2x"></i>
-                            <h3 class="fw-bold mb-0 fs-4">
-                                Personalized Watch Collections:
-                            </h3>
-                            <p>
-                                With PostWatch, users can create their own personalized watch
-                                collections to showcase their favorite timepieces. They can
-                                upload photos and descriptions, and share their collections.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col d-flex align-items-start">
-                        <div>
-                            <i class="fa-sharp fa-solid fa-circle-nodes fa-2x"></i>
-                            <h3 class="fw-bold mb-0 fs-4">Social Networking:</h3>
-                            <p>
-                                PostWatch is a community-driven site where users can connect
-                                with other watch enthusiasts from around the world. Users can
-                                view and like other user collections, and leave comments or
-                                feedback.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col d-flex align-items-start">
-                        <div>
-                            <i class="fa-sharp fa-solid fa-user fa-2x"></i>
-                            <h3 class="fw-bold mb-0 fs-4">User Profiles:</h3>
-                            <p>
-                                Each user has their own profile page where they can display
-                                their watch collections, and view their feed, and access their
-                                account settings.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col d-flex align-items-start">
-                        <div>
-                            <i class="fa-sharp fa-solid fa-mobile fa-2x"></i>
-                            <h3 class="fw-bold mb-0 fs-4">Mobile-Friendly:</h3>
-                            <p>
-                                PostWatch is optimized for mobile devices, making it easy to
-                                access and use on the go.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <hr class="my-5" />
-            </div>
-            <div class="container px-4 py-5">
-                <h2 class="pb-2 border-bottom">Community Guidelines</h2>
-                <br>
-
-                <div class="container">
-                    <p>
-                        At PostWatch, we value mutual respect and aim to create a positive and welcoming environment for
-                        all watch enthusiasts. To ensure a safe and enjoyable experience for everyone, we ask that all
-                        users follow our community guidelines:
-                    </p>
-                    <ol>
-                        <li class="float-start">
-                            <strong>Respect:</strong> Discrimination, harassment, or hate speech will not be tolerated.
-                        </li>
-                        <br>
-                        <li class="float-start">
-                            <strong>Authenticity:</strong> All content should be genuine and original.
-                        </li>
-                        <br>
-                        <li class="float-start">
-                            <strong>Appropriate Content:</strong> Avoid explicit or offensive language, images, or
-                            videos.
-                        </li>
-                        <br>
-                        <li class="float-start">
-                            <strong>Copyright:</strong> Do not post copyrighted material without permission or give
-                            credit where credit is due.
-                        </li>
-                        <br>
-                        <li class="float-start">
-                            <strong>Commercial Use:</strong> Do not use PostWatch to advertise products or services or
-                            solicit others for financial gain.
-                        </li>
-                        <br>
-                        <li class="float-start">
-                            <strong>Moderation:</strong> The PostWatch team reserves the right to moderate content and
-                            remove any material that violates these guidelines or is deemed inappropriate.
-                        </li>
-                    </ol>
+            <div class="container">
+                <p>
+                    At PostWatch, we value mutual respect and aim to create a positive and welcoming environment for
+                    all watch enthusiasts. To ensure a safe and enjoyable experience for everyone, we ask that all
+                    users follow our community guidelines:
+                </p>
+                <ol>
+                    <li class="float-start">
+                        <strong>Respect:</strong> Discrimination, harassment, or hate speech will not be tolerated.
+                    </li>
                     <br>
-                    <p>
-                        By following these guidelines, we can create a positive and welcoming community where watch
-                        enthusiasts can connect, share their passion, and discover new timepieces.
-                    </p>
-                </div>
-                <hr class="my-5">
+                    <li class="float-start">
+                        <strong>Authenticity:</strong> All content should be genuine and original.
+                    </li>
+                    <br>
+                    <li class="float-start">
+                        <strong>Appropriate Content:</strong> Avoid explicit or offensive language, images, or
+                        videos.
+                    </li>
+                    <br>
+                    <li class="float-start">
+                        <strong>Copyright:</strong> Do not post copyrighted material without permission or give
+                        credit where credit is due.
+                    </li>
+                    <br>
+                    <li class="float-start">
+                        <strong>Commercial Use:</strong> Do not use PostWatch to advertise products or services or
+                        solicit others for financial gain.
+                    </li>
+                    <br>
+                    <li class="float-start">
+                        <strong>Moderation:</strong> The PostWatch team reserves the right to moderate content and
+                        remove any material that violates these guidelines or is deemed inappropriate.
+                    </li>
+                </ol>
+                <br>
+                <p>
+                    By following these guidelines, we can create a positive and welcoming community where watch
+                    enthusiasts can connect, share their passion, and discover new timepieces.
+                </p>
             </div>
+            <hr class="my-5">
+        </div>
+        <script>
+             function startTime() {
+        var today = new Date();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var s = today.getSeconds();
+        h = checkTime(h);
+        m = checkTime(m);
+        s = checkTime(s);
+        document.getElementById('clock').innerHTML =
+        h + ":" + m + ":" + s;
+        var t = setTimeout(startTime, 1000);
+      }
+      function checkTime(i) {
+        if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+        return i;
+      }
+        </script>
     </body>
 </main>
 <div class="container">
