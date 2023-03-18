@@ -5,7 +5,13 @@ if (!isset($_SESSION['admin_id'])) {
     exit;
 } elseif (isset($_SESSION["admin_id"])) {
     $mysqli =  require __DIR__ . '/database.php';
-    $sql = "SELECT * FROM user";
+    $sql = "SELECT user.id, user.username, user.email, COUNT(post.id) AS num_posts
+    FROM user
+    LEFT JOIN post ON user.id = post.user_id
+    GROUP BY user.id, user.username, user.email";
+    if ($mysqli->error) {
+        die("Error: " . $mysqli->error);
+    }
     $result = $mysqli->query($sql);
     $mysqli->close();
 }
@@ -21,6 +27,7 @@ if (!isset($_SESSION['admin_id'])) {
     <link rel="stylesheet" href="./css/bootstrap-5.3.0-alpha1/bootstrap-5.3.0-alpha1/dist/css/bootstrap.min.css" />
     <script src="https://kit.fontawesome.com/ff48066121.js" crossorigin="anonymous"></script>
     <script src="./css/bootstrap-5.3.0-alpha1/bootstrap-5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="./css/styles.css" />
 </head>
 
@@ -62,51 +69,46 @@ if (!isset($_SESSION['admin_id'])) {
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                    if ($result->num_rows > 0) {
-                        $count = 1;
-                        while ($row = $result->fetch_assoc()) {
-                            echo "<tr>";
-                            echo "<td>" . $count . "</td>";
-                            echo "<td>" . $row['username'] . "</td>";
-                            echo "<td>" . $row['email'] . "</td>";
-                            echo "<td>" . $row['num_posts'] . "</td>";
-                            echo "<td><button class='btn btn-danger suspend-btn' data-userid='" . $row['id'] . "'>Suspend</button></td>";
-                            echo "</tr>";
-                            $count++;
-                        }
-                    } else {
-                        echo "<tr><td colspan='5'>No users found.</td></tr>";
-                    }
-                    ?>
-                </tbody>
+    <?php
+    if ($result->num_rows > 0) {
+        $count = 1;
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr>";
+            echo "<td>" . $count . "</td>";
+            echo "<td>" . $row['username'] . "</td>";
+            echo "<td>" . $row['email'] . "</td>";
+            echo "<td>" . $row['num_posts'] . "</td>";
+            echo "<td><a href='#' class='btn btn-danger delete-btn' data-userid='" . $row['id'] . "'>Delete User</a></td>";
+            echo "</tr>";
+            $count++;
+        }
+    } else {
+        echo "<tr><td colspan='5'>No users found.</td></tr>";
+    }
+    ?>
+</tbody>
             </table>
         </div>
         <script src="./js/jquery-3.6.0/jquery-3.6.0.min.js"></script>
         <script src="./js/scripts.js"></script>
         <script>
-            function suspendUser(id) {
-                if (confirm("Are you sure you want to suspend this user?")) {
-                    $.ajax({
-                        url: "suspend_user.php",
-                        type: "POST",
-                        data: {
-                            id: id
-                        },
-                        success: function(response) {
-                            if (response == "success") {
-                                alert("User suspended successfully.");
-                                location.reload();
-                            } else {
-                                alert("An error occurred. Please try again.");
-                            }
-                        },
-                        error: function() {
-                            alert("An error occurred. Please try again.");
-                        },
-                    });
-                }
-            }
+            $(document).ready(function() {
+  $('.delete-btn').click(function() {
+    var userId = $(this).data('userid');
+    $.ajax({
+      url: 'delete_user.php',
+      method: 'POST',
+      data: { user_id: userId },
+      success: function(response) {
+        if (response == 'success') {
+          location.reload();
+        } else {
+          alert('Failed to delete user.');
+        }
+      }
+    });
+  });
+});
         </script>
 </body>
 
