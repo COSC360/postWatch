@@ -7,11 +7,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>home</title>
     <style>
-      #clock {
-        font-size: 36px;
-        font-weight: bold;
-        text-align: center;
-      }
+    #clock {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 10px solid black;
+      position: relative;
+      margin: auto;
+    }
+
+    #hour-hand {
+      width: 6px;
+      height: 50px;
+      background-color: black;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform-origin: bottom;
+      transform: translate(-50%, -100%) rotate(0deg);
+      transition: transform 0.5s ease-in-out;
+    }
+
+    #minute-hand {
+      width: 4px;
+      height: 80px;
+      background-color: black;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform-origin: bottom;
+      transform: translate(-50%, -100%) rotate(0deg);
+      transition: transform 0.5s ease-in-out;
+    }
+
+    #clock-face {
+      width: 12px;
+      height: 12px;
+      background-color: black;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    #clock-time {
+      font-size: 36px;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 20px;
+    }
     </style>
     <link rel="stylesheet" href="./css/heroWatch.css" />
     <link rel="stylesheet" href="./css/bootstrap-5.3.0-alpha1/bootstrap-5.3.0-alpha1/dist/css/bootstrap.min.css" />
@@ -125,11 +170,16 @@
                         See Posts
                     </a>
                 </div>
-                <div id="clock"></div>
+                
+                <div id="clock">
+    <div id="hour-hand"></div>
+    <div id="minute-hand"></div>
+    <div id="clock-face"></div>
+  </div>
+  <div id="clock-time"></div>
             </div>
         </div>
-        </div>
-        </div>
+       
         <hr class="my-4" />
 
         <div class="container px-4 py-5">
@@ -233,22 +283,33 @@
             <hr class="my-5">
         </div>
         <script>
-             function startTime() {
-        var today = new Date();
-        var h = today.getHours();
-        var m = today.getMinutes();
-        var s = today.getSeconds();
-        h = checkTime(h);
-        m = checkTime(m);
-        s = checkTime(s);
-        document.getElementById('clock').innerHTML =
+        function startTime() {
+      var today = new Date();
+      var h = today.getHours();
+      var m = today.getMinutes();
+      var s = today.getSeconds();
+      h = checkTime(h);
+      m = checkTime(m);
+      s = checkTime(s);
+      var hourHand = document.getElementById('hour-hand');
+      var minuteHand = document.getElementById('minute-hand');
+
+      var hourDegrees = h * 30 + m * 0.5;
+      var minuteDegrees = m * 6;
+
+      hourHand.style.transform = 'translate(-50%, -100%) rotate(' + hourDegrees + 'deg)';
+      minuteHand.style.transform = 'translate(-50%, -100%) rotate(' + minuteDegrees + 'deg)';
+
+      document.getElementById('clock-time').innerHTML =
         h + ":" + m + ":" + s;
-        var t = setTimeout(startTime, 1000);
-      }
-      function checkTime(i) {
-        if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
-        return i;
-      }
+      var t = setTimeout(startTime, 1000);
+    }
+    function checkTime(i) {
+      if (i < 10) {
+        i = "0" + i
+      }; 
+      return i;
+    }
         </script>
     </body>
 </main>
