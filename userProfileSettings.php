@@ -15,16 +15,6 @@ if (!isset($_SESSION['user_id'])) {
 
     $user = $result->fetch_assoc();
 
-    $sql = "SELECT * FROM post WHERE user_id = " . $_SESSION['user_id'];
-
-    $result = $mysqli->query($sql);
-
-    $posts = array();
-
-    while ($row = $result->fetch_assoc()) {
-        $posts[] = $row;
-    }
-
     $mysqli->close();
 }
 ?>
