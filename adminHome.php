@@ -35,20 +35,14 @@ $mysqli->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>adminHome</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="./css/bootstrap-5.3.0-alpha1/bootstrap-5.3.0-alpha1/dist/css/bootstrap.min.css" />
     <script src="https://kit.fontawesome.com/ff48066121.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
-    </script>
-
+    <script src="./css/bootstrap-5.3.0-alpha1/bootstrap-5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="./css/styles.css" />
     <style>
@@ -56,33 +50,28 @@ $mysqli->close();
         padding: 20px;
         margin-bottom: 50px;
     }
-
     .table {
         border-radius: 10px;
     }
-
     .table-container {
-        margin-top: 50px;
-    }
-
+  margin-top: 50px;
+}
     th {
         font-weight: bold;
     }
-
     .chart-container {
         position: relative;
         width: 100%;
         height: auto;
         margin-top: 50px;
     }
-
     #chart_div {
         position: relative;
         width: 100%;
         height: 0;
         padding-bottom: 56.25%;
     }
-    </style>
+</style>
 </head>
 
 <body>
@@ -91,9 +80,7 @@ $mysqli->close();
             <a class="navbar-brand" href="#">
                 <img src="./img/logo.png" alt="..." height="80" />
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -114,7 +101,7 @@ $mysqli->close();
     <div class="container mt-4">
         <h2>Users</h2>
         <div class="table-responsive table-container">
-            <table class="table table-striped table-sm">
+  <table class="table table-striped table-sm">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -148,45 +135,19 @@ $mysqli->close();
                     }
                     ?>
                 </tbody>
-            </table>
-            <div>
-                <h2>Posts per day</h2>
-            </div>
-            <div class="chart-container">
-                <div id="chart_div"></div>
-            </div>
-        </div>
-
-        <div class="table-responsive mt-5">
-            <table class="table table-striped table-sm">
-                <thead>
-                    <tr>
-                        <th scope="col">Date</th>
-                        <th scope="col">Posts</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                if ($result_posts_per_day->num_rows > 0) {
-                    while ($row = $result_posts_per_day->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td>" . $row['post_date'] . "</td>";
-                        echo "<td>" . $row['num_posts'] . "</td>";
-                        echo "</tr>";
-                    }
-                } else {
-                    echo "<tr><td colspan='2'>No posts found.</td></tr>";
-                }
-                ?>
-                </tbody>
-            </table>
-        </div>
+                </table>
+               <div> <h2>Posts per day</h2></div>
+    <div class="chart-container">
+        <div id="chart_div"></div>
     </div>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-    google.charts.load('current', {
-        'packages': ['corechart']
-    });
+    </div>
+   
+    
+    </div>
+</div>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(drawChart);
 
     function drawChart() {
@@ -201,15 +162,29 @@ $mysqli->close();
 
         var options = {
             title: 'Posts per day',
-            legend: {
-                position: 'none'
-            }
+            legend: { position: 'none' }
         };
 
         var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
         chart.draw(data, options);
     }
-    </script>
+</script>
 </body>
 
+<div class="container">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <p class="col-md-4 mb-0 text-muted">&copy; 2023 PostWatch</p>
+
+        <ul class="nav col-md-4 justify-content-end">
+            <li class="nav-item">
+                <a href="#" class="nav-link px-2 text-muted">Home</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link px-2 text-muted">FAQs</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link px-2 text-muted">About</a>
+            </li>
+        </ul>
+    </footer>
 </html>
