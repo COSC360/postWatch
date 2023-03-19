@@ -160,7 +160,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <?php echo "<p>$date</p>"; ?>
             <?php echo "<p>$username</p>"; ?>
             <p>Likes:</p>
-            <p>Comments:</p>
+            <p>Comments: <?php echo count($comments); ?> </p>
             <div class="my-2">
                 <button class="btn btn-outline-primary me-3"><i class="bi bi-hand-thumbs-up"></i>
                     Like</button>
