@@ -1,7 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Prata&display=swap");
+
 body,
 nav {
   background-color: #b6b6b6;
-  font-family: "Georgia", serif;
+  font-family: "Prata", serif;
   font-size: 16px;
   color: #000;
   margin: 0;
