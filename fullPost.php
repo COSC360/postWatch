@@ -65,6 +65,16 @@
 <body>
 
     <main class="container mt-3">
+        <div class="p-4 p-md-5 mb-4 rounded text-bg-dark">
+            <div class="col-md-6 mx-auto text-center">
+                <h1 class="display-4 fst-italic">Full Post</h1>
+                <p class="lead my-3">Read entire content here, like and comment</p>
+                <button class="btn btn-primary" onclick="location.href='userHomepage.php'"><i
+                        class="bi bi-arrow-left"></i> Go
+                    Back Home</button>
+
+            </div>
+        </div>
     </main>
 </body>
 
