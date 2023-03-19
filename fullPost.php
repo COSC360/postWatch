@@ -91,19 +91,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
-    .navbar-nav .nav-link:hover {
-        background-color: #3d464e;
-        border-radius: 10%;
+        .navbar-nav .nav-link:hover {
+            background-color: #3d464e;
+            border-radius: 10%;
 
-    }
+        }
 
-    .btn:hover {
-        background-color: #f1f1f1;
-    }
+        .btn:hover {
+            background-color: #f1f1f1;
+        }
 
-    .btn i {
-        margin-right: 5px;
-    }
+        .btn i {
+            margin-right: 5px;
+        }
     </style>
 
     <title>Full-Post</title>
@@ -122,9 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <a class="navbar-brand" href="#">
                 <img src="./img/logo.png" alt="..." height="80" />
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -147,31 +145,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
 
     <main class="container mt-3">
-        <div class="p-4 p-md-5 mb-4 rounded text-bg-dark">
-            <div class="col-md-6 mx-auto text-center">
-                <h1 class="display-4 fst-italic">Full Post</h1>
-                <p class="lead my-3">Read entire content here, like and comment</p>
-                <button class="btn btn-primary" onclick="history.go(-1)"><i class="bi bi-arrow-left"></i> Go Back
-                </button>
-
-            </div>
+        <div class="p-4 p-md-5 mb-4 rounded text-center bg-dark text-light">
+            <h1 class="display-4 fst-italic">Full Post</h1>
+            <p class="lead my-3">Read entire content here, like and comment</p>
+            <button class="btn btn-primary" onclick="history.go(-1)"><i class="bi bi-arrow-left"></i> Go Back
+            </button>
         </div>
-
         <div class="container border rounded">
-            <?php echo "<h1>$title</h1>"; ?>
-            <?php echo "<p>$date</p>"; ?>
-            <?php echo "<p>$username</p>"; ?>
-            <p>Likes:</p>
-            <p>Comments: <?php echo count($comments); ?> </p>
-            <div class="my-2">
-                <button class="btn btn-outline-primary me-3"><i class="bi bi-hand-thumbs-up"></i>
-                    Like</button>
-            </div>
             <div class="row">
                 <div class="col-md-6">
                     <img src="<?php echo $image; ?>" class="img-fluid" alt="Post Image" />
                 </div>
                 <div class="col-md-6">
+                    <h1 class="mt-3"><?php echo $title; ?></h1>
+                    <p class="mb-2"><?php echo $date; ?></p>
+                    <p class="mb-2">By <?php echo $username; ?></p>
+                    <div class="d-flex align-items-center">
+                        <p class="me-3">Likes:</p>
+                        <p>Comments: <?php echo count($comments); ?></p>
+                    </div>
+                    <button class="btn btn-outline-primary me-3"><i class="bi bi-hand-thumbs-up"></i>
+                        Like</button>
+                    <hr>
                     <p><?php echo $content; ?></p>
                 </div>
             </div>
@@ -179,15 +174,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <div class="container my-5">
             <h2>Comments</h2>
-            <!-- bring comments from db here -->
             <?php foreach ($comments as $comment) : ?>
-            <div class="card my-3">
-                <div class="card-body">
-                    <h5 class="card-title"><?php echo $comment['username']; ?></h5>
-                    <h6 class="card-subtitle mb-2 text-muted"><?php echo $comment['date']; ?></h6>
-                    <p class="card-text"><?php echo $comment['content']; ?></p>
+                <div class="card my-3">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $comment['username']; ?></h5>
+                        <h6 class="card-subtitle mb-2 text-muted"><?php echo $comment['date']; ?></h6>
+                        <p class="card-text"><?php echo $comment['content']; ?></p>
+                    </div>
                 </div>
-            </div>
             <?php endforeach; ?>
 
             <hr>
@@ -204,11 +198,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <button type="submit" class="btn btn-primary mt-2">Submit</button>
             </form>
         </div>
-
     </main>
-
+    <style>
+        img {
+            max-height: 400px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+    </style>
     <script>
-    // like post
+        // like post
     </script>
 
 </body>
