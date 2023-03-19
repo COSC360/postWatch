@@ -12,12 +12,7 @@ nav {
 }
 .blocki,
 h5 {
-  background-color: rgba(
-    192,
-    192,
-    192,
-    0.6
-  ); /* a nice gold color with 50% opacity */
+  background-color: rgba(192, 192, 192, 0.6);
   color: #000;
   padding: 2px;
   margin: 2px;
