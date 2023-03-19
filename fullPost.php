@@ -55,6 +55,28 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 }
 
 
+// now if the user has filled in the comment form and clicked submit, we need to process the form post data to the comments table
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // get user_id from session
+    session_start();
+    $user_id = $_SESSION['user_id'];
+
+    // get post_id from URL parameter
+    $post_id = $_GET['id'];
+
+    // insert comment into database
+    $content = $_POST['content'];
+    $date = date('Y-m-d H:i:s');
+    $stmt = $mysqli->prepare("INSERT INTO comments (user_id, post_id, content, date) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param('iiss', $user_id, $post_id, $content, $date);
+    $stmt->execute();
+
+    // reload page to display new comment
+    header("Location: fullPost.php?id=$post_id");
+}
+
+
 
 
 
