@@ -97,19 +97,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
-    .navbar-nav .nav-link:hover {
-        background-color: #3d464e;
-        border-radius: 10%;
+        .navbar-nav .nav-link:hover {
+            background-color: #3d464e;
+            border-radius: 10%;
 
-    }
+        }
 
-    .btn:hover {
-        background-color: #f1f1f1;
-    }
+        .btn:hover {
+            background-color: #f1f1f1;
+        }
 
-    .btn i {
-        margin-right: 5px;
-    }
+        .btn i {
+            margin-right: 5px;
+        }
     </style>
 
     <title>Full-Post</title>
@@ -128,9 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <a class="navbar-brand" href="#">
                 <img src="./img/logo.png" alt="..." height="80" />
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -167,8 +165,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="col-md-6">
                     <h1 class="mt-3"><?php echo $title; ?></h1>
                     <p class="mb-2"><?php echo $date; ?></p>
-                    <img src="<?php echo $profilepicture; ?>" class="img-fluid rounded-circle mb-2" alt="User Image"
-                        style="width: 50px; height: 50px;" />
+                    <?php
+                    if (!isset($profilepicture) || empty($profilepicture)) {
+                        $profilepicture = './img/userProimg.jpg'; // set default profile picture
+                    }
+                    ?>
+                    <img src="<?php echo $profilepicture; ?>" class="img-fluid rounded-circle mb-2" alt="User Image" style="width: 50px; height: 50px;" />
                     <p class="mb-2">By <?php echo $username; ?></p>
 
                     <div class="d-flex align-items-center">
@@ -186,13 +188,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="container my-5">
             <h2>Comments</h2>
             <?php foreach ($comments as $comment) : ?>
-            <div class="card my-3">
-                <div class="card-body">
-                    <h5 class="card-title"><?php echo $comment['username']; ?></h5>
-                    <h6 class="card-subtitle mb-2 text-muted"><?php echo $comment['date']; ?></h6>
-                    <p class="card-text"><?php echo $comment['content']; ?></p>
+                <div class="card my-3">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $comment['username']; ?></h5>
+                        <h6 class="card-subtitle mb-2 text-muted"><?php echo $comment['date']; ?></h6>
+                        <p class="card-text"><?php echo $comment['content']; ?></p>
+                    </div>
                 </div>
-            </div>
             <?php endforeach; ?>
 
             <hr>
@@ -211,14 +213,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </main>
     <style>
-    img {
-        max-height: 400px;
-        margin-top: 20px;
-        border-radius: 5px;
-    }
+        img {
+            max-height: 400px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
     </style>
     <script>
-    // like post
+        // like post
     </script>
 
 </body>
