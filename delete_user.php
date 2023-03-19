@@ -3,9 +3,9 @@ session_start();
 if (!isset($_SESSION['admin_id'])) {
     header("Location: index.php");
     exit;
-} elseif (isset($_POST['user_id'])) {
+} elseif (isset($_POST['userid'])) { // change 'user_id' to 'userid'
     $mysqli = require __DIR__ . '/database.php';
-    $userId = $mysqli->real_escape_string($_POST['user_id']);
+    $userId = $mysqli->real_escape_string($_POST['userid']); // change 'user_id' to 'userid'
     $sql = "DELETE FROM user WHERE id = '$userId'";
     if ($mysqli->query($sql) === TRUE) {
         echo 'success';
@@ -14,4 +14,3 @@ if (!isset($_SESSION['admin_id'])) {
     }
     $mysqli->close();
 }
-?>

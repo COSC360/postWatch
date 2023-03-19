@@ -12,7 +12,7 @@ if (!isset($_SESSION['admin_id'])) {
     if ($mysqli->error) {
         die("Error: " . $mysqli->error);
     }
-    
+
     $result = $mysqli->query($sql);
 }
 $sql_posts_per_day = "SELECT DATE(date) AS post_date, COUNT(*) AS num_posts 
@@ -54,9 +54,7 @@ $mysqli->close();
             <a class="navbar-brand" href="#">
                 <img src="./img/logo.png" alt="..." height="80" />
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -97,7 +95,12 @@ $mysqli->close();
                             echo "<td>" . $row['username'] . "</td>";
                             echo "<td>" . $row['email'] . "</td>";
                             echo "<td>" . $row['num_posts'] . "</td>";
-                            echo "<td><a href='#' class='btn btn-danger delete-btn' data-userid='" . $row['id'] . "'>Delete User</a></td>";
+                            echo "<td>
+                            <form action='delete_user.php' method='POST'>
+                              <input type='hidden' name='userid' value='" . $row['id'] . "'>
+                              <button type='submit' class='btn btn-danger'>Delete User</button>
+                            </form>
+                          </td>";
                             echo "</tr>";
                             $count++;
                         }
@@ -107,75 +110,89 @@ $mysqli->close();
                     ?>
                 </tbody>
             </table>
-        </div> <h2>Posts per Day</h2>
+        </div>
+        <h2>Posts per Day</h2>
         <div id="chart_div"></div>
     </div>
     <script src="./js/jquery-3.6.0/jquery-3.6.0.min.js"></script>
     <script src="./js/scripts.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script>
-        google.charts.load('current', {'packages':['corechart']});
-        google.charts.setOnLoadCallback(drawChart);
-      
-        function drawChart() {
-    var data = google.visualization.arrayToDataTable([
-        ['Day', 'Posts'],
-        <?php
-            $mysqli =  require __DIR__ . '/database.php';
-            $sql = "SELECT DATE(date) AS date, COUNT(*) AS num_posts FROM post GROUP BY DATE(date)";
-            $result = $mysqli->query($sql);
-            while ($row = $result->fetch_assoc()) {
-                echo "['" . $row['date'] . "', " . $row['num_posts'] . "],";
-            }
-            $mysqli->close();
-        ?>
-    ]);
-
-    var options = {
-        title: 'Posts per Day',
-        curveType: 'none',
-        legend: { position: 'bottom' },
-        colors: ['#4285F4'],
-        fontName: 'Arial',
-        fontSize: 14,
-        chartArea: { width: '80%', height: '70%' },
-        hAxis: {
-            title: 'Day',
-            titleTextStyle: { bold: true, fontSize: 16 },
-            format: 'MMM dd' 
-        },
-        vAxis: {
-            title: 'Number of Posts',
-            titleTextStyle: { bold: true, fontSize: 16 }
-        }
-    };
-
-    var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-
-    chart.draw(data, options);
-}
-    </script>
-        <script>
-        $(document).ready(function() {
-    $('.delete-btn').click(function() {
-        var userId = $(this).data('userid'); 
-        $.ajax({
-            url: 'delete_user.php',
-            method: 'POST',
-            data: {
-                user_id: userId
-            },
-            success: function(response) {
-                if (response == 'success') {
-                    location.reload();
-                } else {
-                    alert('Failed to delete user.');
-                }
-            }
+        google.charts.load('current', {
+            'packages': ['corechart']
         });
-    });
-});
-        </script>
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Day', 'Posts'],
+                <?php
+                $mysqli =  require __DIR__ . '/database.php';
+                $sql = "SELECT DATE(date) AS date, COUNT(*) AS num_posts FROM post GROUP BY DATE(date)";
+                $result = $mysqli->query($sql);
+                while ($row = $result->fetch_assoc()) {
+                    echo "['" . $row['date'] . "', " . $row['num_posts'] . "],";
+                }
+                $mysqli->close();
+                ?>
+            ]);
+
+            var options = {
+                title: 'Posts per Day',
+                curveType: 'none',
+                legend: {
+                    position: 'bottom'
+                },
+                colors: ['#4285F4'],
+                fontName: 'Arial',
+                fontSize: 14,
+                chartArea: {
+                    width: '80%',
+                    height: '70%'
+                },
+                hAxis: {
+                    title: 'Day',
+                    titleTextStyle: {
+                        bold: true,
+                        fontSize: 16
+                    },
+                    format: 'MMM dd'
+                },
+                vAxis: {
+                    title: 'Number of Posts',
+                    titleTextStyle: {
+                        bold: true,
+                        fontSize: 16
+                    }
+                }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+
+            chart.draw(data, options);
+        }
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('.delete-btn').click(function() {
+                var userId = $(this).data('userid');
+                $.ajax({
+                    url: 'delete_user.php',
+                    method: 'POST',
+                    data: {
+                        user_id: userId
+                    },
+                    success: function(response) {
+                        if (response == 'success') {
+                            location.reload();
+                        } else {
+                            alert('Failed to delete user.');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

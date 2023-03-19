@@ -186,7 +186,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <hr>
 
-            <form method="post" class="my-5">
+            <form method="post" class="my-5" autocomplete="off">
                 <div class="form-group">
                     <label for="username">User Name</label>
                     <?php echo "<input type='text' name='username' id='username' class='form-control' value='$userprofilename' readonly />"; ?>
