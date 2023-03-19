@@ -35,7 +35,6 @@ $mysqli->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -46,6 +45,33 @@ $mysqli->close();
     <script src="./css/bootstrap-5.3.0-alpha1/bootstrap-5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="./css/styles.css" />
+    <style>
+    table {
+        padding: 20px;
+        margin-bottom: 50px;
+    }
+    .table {
+        border-radius: 10px;
+    }
+    .table-container {
+  margin-top: 50px;
+}
+    th {
+        font-weight: bold;
+    }
+    .chart-container {
+        position: relative;
+        width: 100%;
+        height: auto;
+        margin-top: 50px;
+    }
+    #chart_div {
+        position: relative;
+        width: 100%;
+        height: 0;
+        padding-bottom: 56.25%;
+    }
+</style>
 </head>
 
 <body>
@@ -74,8 +100,8 @@ $mysqli->close();
     </nav>
     <div class="container mt-4">
         <h2>Users</h2>
-        <div class="table-responsive">
-            <table class="table table-striped table-sm">
+        <div class="table-responsive table-container">
+  <table class="table table-striped table-sm">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -109,90 +135,61 @@ $mysqli->close();
                     }
                     ?>
                 </tbody>
-            </table>
-        </div>
-        <h2>Posts per Day</h2>
+                </table>
+               <div> <h2>Posts per day</h2></div>
+    <div class="chart-container">
         <div id="chart_div"></div>
     </div>
-    <script src="./js/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-    <script src="./js/scripts.js"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script>
-        google.charts.load('current', {
-            'packages': ['corechart']
-        });
-        google.charts.setOnLoadCallback(drawChart);
-
-        function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['Day', 'Posts'],
+    </div>
+   
+    <div class="table-responsive mt-5">
+        <table class="table table-striped table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Posts</th>
+                </tr>
+            </thead>
+            <tbody>
                 <?php
-                $mysqli =  require __DIR__ . '/database.php';
-                $sql = "SELECT DATE(date) AS date, COUNT(*) AS num_posts FROM post GROUP BY DATE(date)";
-                $result = $mysqli->query($sql);
-                while ($row = $result->fetch_assoc()) {
-                    echo "['" . $row['date'] . "', " . $row['num_posts'] . "],";
+                if ($result_posts_per_day->num_rows > 0) {
+                    while ($row = $result_posts_per_day->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<td>" . $row['post_date'] . "</td>";
+                        echo "<td>" . $row['num_posts'] . "</td>";
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='2'>No posts found.</td></tr>";
                 }
-                $mysqli->close();
                 ?>
-            ]);
+            </tbody>
+        </table>
+    </div>
+</div>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
 
-            var options = {
-                title: 'Posts per Day',
-                curveType: 'none',
-                legend: {
-                    position: 'bottom'
-                },
-                colors: ['#4285F4'],
-                fontName: 'Arial',
-                fontSize: 14,
-                chartArea: {
-                    width: '80%',
-                    height: '70%'
-                },
-                hAxis: {
-                    title: 'Day',
-                    titleTextStyle: {
-                        bold: true,
-                        fontSize: 16
-                    },
-                    format: 'MMM dd'
-                },
-                vAxis: {
-                    title: 'Number of Posts',
-                    titleTextStyle: {
-                        bold: true,
-                        fontSize: 16
-                    }
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Date', 'Posts per day'],
+            <?php
+                foreach ($dataPoints as $point) {
+                    echo "['" . date('Y-m-d', $point['x'] / 1000) . "', " . $point['y'] . "],";
                 }
-            };
+            ?>
+        ]);
 
-            var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+        var options = {
+            title: 'Posts per day',
+            legend: { position: 'none' }
+        };
 
-            chart.draw(data, options);
-        }
-    </script>
-    <script>
-        $(document).ready(function() {
-            $('.delete-btn').click(function() {
-                var userId = $(this).data('userid');
-                $.ajax({
-                    url: 'delete_user.php',
-                    method: 'POST',
-                    data: {
-                        user_id: userId
-                    },
-                    success: function(response) {
-                        if (response == 'success') {
-                            location.reload();
-                        } else {
-                            alert('Failed to delete user.');
-                        }
-                    }
-                });
-            });
-        });
-    </script>
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+    }
+</script>
 </body>
-
 </html>

@@ -3,14 +3,22 @@ session_start();
 if (!isset($_SESSION['admin_id'])) {
     header("Location: index.php");
     exit;
-} elseif (isset($_POST['userid'])) { // change 'user_id' to 'userid'
+}
+if (isset($_POST['userid'])) {
+    $user_id = $_POST['userid'];
     $mysqli = require __DIR__ . '/database.php';
-    $userId = $mysqli->real_escape_string($_POST['userid']); // change 'user_id' to 'userid'
-    $sql = "DELETE FROM user WHERE id = '$userId'";
-    if ($mysqli->query($sql) === TRUE) {
-        echo 'success';
-    } else {
-        echo 'Failed to delete user: ' . $mysqli->error;
+    $delete_posts_sql = "DELETE FROM post WHERE user_id = $user_id";
+    if (!$mysqli->query($delete_posts_sql)) {
+        die("Error deleting posts: " . $mysqli->error);
+    }
+    $delete_user_sql = "DELETE FROM user WHERE id = $user_id";
+    if (!$mysqli->query($delete_user_sql)) {
+        die("Error deleting user: " . $mysqli->error);
     }
     $mysqli->close();
+    header("Location: adminHome.php");
+    exit;
+} else {
+    header("Location: adminHome.php");
+    exit;
 }
