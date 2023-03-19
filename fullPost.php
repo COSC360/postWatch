@@ -44,19 +44,19 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
-    .navbar-nav .nav-link:hover {
-        background-color: #3d464e;
-        border-radius: 10%;
+        .navbar-nav .nav-link:hover {
+            background-color: #3d464e;
+            border-radius: 10%;
 
-    }
+        }
 
-    .btn:hover {
-        background-color: #f1f1f1;
-    }
+        .btn:hover {
+            background-color: #f1f1f1;
+        }
 
-    .btn i {
-        margin-right: 5px;
-    }
+        .btn i {
+            margin-right: 5px;
+        }
     </style>
 
     <title>Full-Post</title>
@@ -75,9 +75,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             <a class="navbar-brand" href="#">
                 <img src="./img/logo.png" alt="..." height="80" />
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -104,9 +102,9 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             <div class="col-md-6 mx-auto text-center">
                 <h1 class="display-4 fst-italic">Full Post</h1>
                 <p class="lead my-3">Read entire content here, like and comment</p>
-                <button class="btn btn-primary" onclick="location.href='userHomepage.php'"><i
-                        class="bi bi-arrow-left"></i> Go
-                    Back Home</button>
+                <button class="btn btn-primary" onclick="history.go(-1)"><i class="bi bi-arrow-left"></i> Go Back
+                </button>
+
             </div>
         </div>
 
@@ -150,7 +148,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     </main>
 
     <script>
-    // like post
+        // like post
     </script>
 
 </body>
