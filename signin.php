@@ -39,8 +39,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>signin</title>
-    <link rel="stylesheet" href="./css/bootstrap-5.3.0-alpha1/bootstrap-5.3.0-alpha1/dist/css/bootstrap.min.css" />
-    <script src="./css/bootstrap-5.3.0-alpha1/bootstrap-5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
     <script src="./js/signInValid.js"></script>
     <link rel="stylesheet" href="./css/styles.css" />
     <nav class="navbar navbar-expand-lg navbar-light bg-white static-top">
@@ -48,7 +51,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <a class="navbar-brand" href="#">
                 <img src="./img/logo.png" alt="..." height="80" />
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -72,11 +77,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <form class="w-50" method="POST">
             <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" aria-describedby="usernameHelp" placeholder="Enter username" required name="username" />
+                <input type="text" class="form-control" id="username" aria-describedby="usernameHelp"
+                    placeholder="Enter username" required name="username" />
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Password" required name="password" />
+                <input type="password" class="form-control" id="password" placeholder="Password" required
+                    name="password" />
             </div>
             <br />
             <div class="d-flex justify-content-center">

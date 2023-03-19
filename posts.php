@@ -24,17 +24,21 @@ $mysqli->close();
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>posts</title>
-    <link rel="stylesheet" href="./css/heroWatch.css" />
-    <link rel="stylesheet" href="./css/bootstrap-5.3.0-alpha1/bootstrap-5.3.0-alpha1/dist/css/bootstrap.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/ff48066121.js" crossorigin="anonymous"></script>
-    <script src="./css/bootstrap-5.3.0-alpha1/bootstrap-5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
     <link rel="stylesheet" href="./css/styles.css" />
     <nav class="navbar navbar-expand-lg navbar-light bg-white static-top">
         <div class="container">
             <a class="navbar-brand" href="#">
                 <img src="./img/logo.png" alt="..." height="80" />
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -69,29 +73,31 @@ $mysqli->close();
 
         <div class="input-group mb-3 justify-content-center">
             <form action="" method="get" class="d-flex">
-                <input type="text" class="form-control px-4 " placeholder="Search posts by title..." name="search" value="<?php echo $search ?>">
+                <input type="text" class="form-control px-4 " placeholder="Search posts by title..." name="search"
+                    value="<?php echo $search ?>">
                 <button class="btn btn-outline-secondary  ms-2" type="submit">Search</button>
             </form>
         </div>
         <div class="row mb-2 align-items-stretch">
             <?php foreach ($posts as $post) : ?>
-                <div class="col-md-6">
-                    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                        <div class="col p-4 d-flex flex-column position-static postUser">
-                            <h3 class="mb-0"><?php echo $post["title"]; ?></h3>
-                            <?php echo substr($post['content'], 0, 100) . '...'; ?>
-                            <a href="signup.php" class="stretched-link">Continue reading</a>
-                            <div class="mt-3 d-flex align-items-center">
-                                <span class="me-4"><i class="bi bi-heart text-danger hover-text-danger"></i></span>
-                                <span class="ms-4"><i class="bi bi-chat-dots text-primary hover-text-primary"></i></span>
-                            </div>
+            <div class="col-md-6">
+                <div
+                    class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="col p-4 d-flex flex-column position-static postUser">
+                        <h3 class="mb-0"><?php echo $post["title"]; ?></h3>
+                        <?php echo substr($post['content'], 0, 100) . '...'; ?>
+                        <a href="signup.php" class="stretched-link">Continue reading</a>
+                        <div class="mt-3 d-flex align-items-center">
+                            <span class="me-4"><i class="bi bi-heart text-danger hover-text-danger"></i></span>
+                            <span class="ms-4"><i class="bi bi-chat-dots text-primary hover-text-primary"></i></span>
                         </div>
-                        <div class="col-md-6 col-lg-4 d-flex align-items-center p-2">
-                            <img src="<?php echo $post["image"]; ?>" alt="User Image" class="img-fluid" />
-                        </div>
-
                     </div>
+                    <div class="col-md-6 col-lg-4 d-flex align-items-center p-2">
+                        <img src="<?php echo $post["image"]; ?>" alt="User Image" class="img-fluid" />
+                    </div>
+
                 </div>
+            </div>
             <?php endforeach; ?>
         </div>
     </main>

@@ -97,30 +97,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
-        .navbar-nav .nav-link:hover {
-            background-color: #3d464e;
-            border-radius: 10%;
+    .navbar-nav .nav-link:hover {
+        background-color: #3d464e;
+        border-radius: 10%;
 
-        }
+    }
 
-        .btn:hover {
-            background-color: #f1f1f1;
-        }
+    .btn:hover {
+        background-color: #f1f1f1;
+    }
 
-        .btn i {
-            margin-right: 5px;
-        }
+    .btn i {
+        margin-right: 5px;
+    }
     </style>
 
     <title>Full-Post</title>
     <link rel="stylesheet" href="path/to/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="./css/heroWatch.css" />
-    <link rel="stylesheet" href="./css/bootstrap-5.3.0-alpha1/bootstrap-5.3.0-alpha1/dist/css/bootstrap.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <script src="https://kit.fontawesome.com/ff48066121.js" crossorigin="anonymous"></script>
-    <script src="./css/bootstrap-5.3.0-alpha1/bootstrap-5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
     <link rel="stylesheet" href="./css/styles.css" />
 
     <nav class="navbar navbar-expand-lg navbar-light bg-white static-top">
@@ -128,7 +130,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <a class="navbar-brand" href="#">
                 <img src="./img/logo.png" alt="..." height="80" />
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -170,7 +174,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         $profilepicture = './img/userProimg.jpg'; // set default profile picture
                     }
                     ?>
-                    <img src="<?php echo $profilepicture; ?>" class="img-fluid rounded-circle mb-2" alt="User Image" style="width: 50px; height: 50px;" />
+                    <img src="<?php echo $profilepicture; ?>" class="img-fluid rounded-circle mb-2" alt="User Image"
+                        style="width: 50px; height: 50px;" />
                     <p class="mb-2">By <?php echo $username; ?></p>
 
                     <div class="d-flex align-items-center">
@@ -188,13 +193,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="container my-5">
             <h2>Comments</h2>
             <?php foreach ($comments as $comment) : ?>
-                <div class="card my-3">
-                    <div class="card-body">
-                        <h5 class="card-title"><?php echo $comment['username']; ?></h5>
-                        <h6 class="card-subtitle mb-2 text-muted"><?php echo $comment['date']; ?></h6>
-                        <p class="card-text"><?php echo $comment['content']; ?></p>
-                    </div>
+            <div class="card my-3">
+                <div class="card-body">
+                    <h5 class="card-title"><?php echo $comment['username']; ?></h5>
+                    <h6 class="card-subtitle mb-2 text-muted"><?php echo $comment['date']; ?></h6>
+                    <p class="card-text"><?php echo $comment['content']; ?></p>
                 </div>
+            </div>
             <?php endforeach; ?>
 
             <hr>
@@ -213,14 +218,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </main>
     <style>
-        img {
-            max-height: 400px;
-            margin-top: 20px;
-            border-radius: 5px;
-        }
+    img {
+        max-height: 400px;
+        margin-top: 20px;
+        border-radius: 5px;
+    }
     </style>
     <script>
-        // like post
+    // like post
     </script>
 
 </body>
