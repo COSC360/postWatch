@@ -1,20 +1,20 @@
-$(document).on("click", ".suspend-btn", function () {
+$(document).on("click", ".delete-btn", function () {
     var id = $(this).data("userid");
-    suspendUser(id);
+    deleteUser(id);
 });
 
-function suspendUser(id) {
-    if (confirm("Are you sure you want to suspend this user?")) {
+function deleteUser(id) {
+    if (confirm("Are you sure you want to delete this user?")) {
         $.ajax({
-            url: "suspend_user.php",
+            url: "delete_user.php",
             type: "POST",
-            data: { id: id },
+            data: { user_id: id },
             success: function (response) {
                 if (response == "success") {
-                    alert("User suspended successfully.");
+                    alert("User deleted successfully.");
                     location.reload();
                 } else {
-                    alert("An error occurred. Please try again.");
+                    alert("Failed to delete user.");
                 }
             },
             error: function () {
