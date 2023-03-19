@@ -24,8 +24,8 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     // get id value and also the username of the user who created the post from user table
 
     $result = mysqli_query($mysqli, "SELECT * FROM post INNER JOIN user ON post.user_id = user.id WHERE post.id=$id  ");
-
     $row = mysqli_fetch_array($result);
+
 
     // check that the 'id' matches up with a row in the databse and put the data into variables
 
@@ -40,6 +40,18 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 
         echo "No results!";
     }
+
+    // get the comments from the comment table 
+
+    $result = mysqli_query($mysqli, "SELECT * FROM comments INNER JOIN user ON comments.user_id = user.id WHERE comments.post_id=$id  ");
+    $comments = array();
+    while ($row = $result->fetch_assoc()) {
+        $comments[] = $row;
+    }
+} else {
+    // if the 'id' in the URL isn't valid, or if there is no 'id' value, redirect the user back to the view page
+
+    header("Location: userHomepage.php");
 }
 
 
@@ -144,6 +156,17 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
         <div class="container my-5">
             <h2>Comments</h2>
             <!-- bring comments from db here -->
+            <?php foreach ($comments as $comment) : ?>
+                <div class="card my-3">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $comment['username']; ?></h5>
+                        <h6 class="card-subtitle mb-2 text-muted"><?php echo $comment['date']; ?></h6>
+                        <p class="card-text"><?php echo $comment['content']; ?></p>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+
+            <hr>
 
             <form method="post" class="my-5">
                 <div class="form-group">
