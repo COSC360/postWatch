@@ -1,8 +1,20 @@
 <?php
+session_start();
 
 // connect to the database
 
 $mysqli =  require __DIR__ . '/database.php';
+
+// get current user name from session id
+
+$sql = "SELECT * FROM user WHERE id = " . $_SESSION['user_id'];
+
+$result = $mysqli->query($sql);
+
+$user = $result->fetch_assoc();
+
+$userprofilename = $user['username'];
+
 
 // check if the 'id' variable is set in URL, and check that it is valid 
 
@@ -29,6 +41,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
         echo "No results!";
     }
 }
+
 
 
 
@@ -135,7 +148,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             <form method="post" class="my-5">
                 <div class="form-group">
                     <label for="username">User Name</label>
-                    <?php echo "<input type='text' name='username' id='username' class='form-control' value='$username' readonly />"; ?>
+                    <?php echo "<input type='text' name='username' id='username' class='form-control' value='$userprofilename' readonly />"; ?>
                 </div>
                 <div class="form-group">
                     <label for="content">Comment</label>
