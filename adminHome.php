@@ -37,7 +37,9 @@ if (!isset($_SESSION['admin_id'])) {
             <a class="navbar-brand" href="#">
                 <img src="./img/logo.png" alt="..." height="80" />
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -69,46 +71,48 @@ if (!isset($_SESSION['admin_id'])) {
                     </tr>
                 </thead>
                 <tbody>
-    <?php
-    if ($result->num_rows > 0) {
-        $count = 1;
-        while ($row = $result->fetch_assoc()) {
-            echo "<tr>";
-            echo "<td>" . $count . "</td>";
-            echo "<td>" . $row['username'] . "</td>";
-            echo "<td>" . $row['email'] . "</td>";
-            echo "<td>" . $row['num_posts'] . "</td>";
-            echo "<td><a href='#' class='btn btn-danger delete-btn' data-userid='" . $row['id'] . "'>Delete User</a></td>";
-            echo "</tr>";
-            $count++;
-        }
-    } else {
-        echo "<tr><td colspan='5'>No users found.</td></tr>";
-    }
-    ?>
-</tbody>
+                    <?php
+                    if ($result->num_rows > 0) {
+                        $count = 1;
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<tr>";
+                            echo "<td>" . $count . "</td>";
+                            echo "<td>" . $row['username'] . "</td>";
+                            echo "<td>" . $row['email'] . "</td>";
+                            echo "<td>" . $row['num_posts'] . "</td>";
+                            echo "<td><a href='#' class='btn btn-danger delete-btn' data-userid='" . $row['id'] . "'>Delete User</a></td>";
+                            echo "</tr>";
+                            $count++;
+                        }
+                    } else {
+                        echo "<tr><td colspan='5'>No users found.</td></tr>";
+                    }
+                    ?>
+                </tbody>
             </table>
         </div>
         <script src="./js/jquery-3.6.0/jquery-3.6.0.min.js"></script>
         <script src="./js/scripts.js"></script>
         <script>
-            $(document).ready(function() {
-  $('.delete-btn').click(function() {
-    var userId = $(this).data('userid');
-    $.ajax({
-      url: 'delete_user.php',
-      method: 'POST',
-      data: { user_id: userId },
-      success: function(response) {
-        if (response == 'success') {
-          location.reload();
-        } else {
-          alert('Failed to delete user.');
-        }
-      }
-    });
-  });
-});
+        $(document).ready(function() {
+            $('.delete-btn').click(function() {
+                var userId = $(this).data('id');
+                $.ajax({
+                    url: 'delete_user.php',
+                    method: 'POST',
+                    data: {
+                        user_id: userId
+                    },
+                    success: function(response) {
+                        if (response == 'success') {
+                            location.reload();
+                        } else {
+                            alert('Failed to delete user.');
+                        }
+                    }
+                });
+            });
+        });
         </script>
 </body>
 
