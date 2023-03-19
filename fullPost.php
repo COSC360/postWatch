@@ -44,19 +44,19 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
-        .navbar-nav .nav-link:hover {
-            background-color: #3d464e;
-            border-radius: 10%;
+    .navbar-nav .nav-link:hover {
+        background-color: #3d464e;
+        border-radius: 10%;
 
-        }
+    }
 
-        .btn:hover {
-            background-color: #f1f1f1;
-        }
+    .btn:hover {
+        background-color: #f1f1f1;
+    }
 
-        .btn i {
-            margin-right: 5px;
-        }
+    .btn i {
+        margin-right: 5px;
+    }
     </style>
 
     <title>Full-Post</title>
@@ -75,7 +75,9 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             <a class="navbar-brand" href="#">
                 <img src="./img/logo.png" alt="..." height="80" />
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -102,9 +104,9 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             <div class="col-md-6 mx-auto text-center">
                 <h1 class="display-4 fst-italic">Full Post</h1>
                 <p class="lead my-3">Read entire content here, like and comment</p>
-                <button class="btn btn-primary" onclick="location.href='userHomepage.php'"><i class="bi bi-arrow-left"></i> Go
+                <button class="btn btn-primary" onclick="location.href='userHomepage.php'"><i
+                        class="bi bi-arrow-left"></i> Go
                     Back Home</button>
-
             </div>
         </div>
 
@@ -112,22 +114,45 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             <?php echo "<h1>$title</h1>"; ?>
             <?php echo "<p>$date</p>"; ?>
             <?php echo "<p>$username</p>"; ?>
+            <p>Likes:</p>
+            <p>Comments:</p>
+            <div class="my-2">
+                <button class="btn btn-outline-primary me-3"><i class="bi bi-hand-thumbs-up"></i>
+                    Like</button>
+            </div>
             <div class="row">
                 <div class="col-md-6">
-                    <img src="<?php echo $image; ?>" alt="..." height="300" />
+                    <img src="<?php echo $image; ?>" class="img-fluid" alt="Post Image" />
                 </div>
                 <div class="col-md-6">
                     <p><?php echo $content; ?></p>
                 </div>
-
-
-
-
-
-
             </div>
+        </div>
+
+        <div class="container my-5">
+            <h2>Comments</h2>
+            <!-- bring comments from db here -->
+
+            <form method="post" class="my-5">
+                <div class="form-group">
+                    <label for="username">User Name</label>
+                    <?php echo "<input type='text' name='username' id='username' class='form-control' value='$username' readonly />"; ?>
+                </div>
+                <div class="form-group">
+                    <label for="content">Comment</label>
+                    <textarea name="content" id="content" class="form-control" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary mt-2">Submit</button>
+            </form>
+        </div>
 
     </main>
+
+    <script>
+    // like post
+    </script>
+
 </body>
 
 <div class="container">
