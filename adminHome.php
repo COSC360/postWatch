@@ -4,7 +4,7 @@ if (!isset($_SESSION['admin_id'])) {
     header("Location: index.php");
     exit;
 } elseif (isset($_SESSION["admin_id"])) {
-    $mysqli =  require __DIR__ . '/database.php';
+    $mysqli = require __DIR__ . '/database.php';
     $sql = "SELECT user.id, user.username, user.email, COUNT(post.id) AS num_posts
     FROM user
     LEFT JOIN post ON user.id = post.user_id
@@ -12,9 +12,26 @@ if (!isset($_SESSION['admin_id'])) {
     if ($mysqli->error) {
         die("Error: " . $mysqli->error);
     }
+    
     $result = $mysqli->query($sql);
-    $mysqli->close();
 }
+$sql_posts_per_day = "SELECT DATE(date) AS post_date, COUNT(*) AS num_posts 
+                      FROM post 
+                      GROUP BY DATE(date) 
+                      ORDER BY post_date ASC";
+$result_posts_per_day = $mysqli->query($sql_posts_per_day);
+$dataPoints = array();
+if ($result_posts_per_day->num_rows > 0) {
+    while ($row = $result_posts_per_day->fetch_assoc()) {
+        $date = strtotime($row['post_date']) * 1000;
+        $num_posts = intval($row['num_posts']);
+        $dataPoints[] = array("x" => $date, "y" => $num_posts);
+    }
+}
+
+// Close the database connection
+$mysqli->close();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -90,29 +107,74 @@ if (!isset($_SESSION['admin_id'])) {
                     ?>
                 </tbody>
             </table>
-        </div>
-        <script src="./js/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-        <script src="./js/scripts.js"></script>
+        </div> <h2>Posts per Day</h2>
+        <div id="chart_div"></div>
+    </div>
+    <script src="./js/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+    <script src="./js/scripts.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+      
+        function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+        ['Day', 'Posts'],
+        <?php
+            $mysqli =  require __DIR__ . '/database.php';
+            $sql = "SELECT DATE(date) AS date, COUNT(*) AS num_posts FROM post GROUP BY DATE(date)";
+            $result = $mysqli->query($sql);
+            while ($row = $result->fetch_assoc()) {
+                echo "['" . $row['date'] . "', " . $row['num_posts'] . "],";
+            }
+            $mysqli->close();
+        ?>
+    ]);
+
+    var options = {
+        title: 'Posts per Day',
+        curveType: 'none',
+        legend: { position: 'bottom' },
+        colors: ['#4285F4'],
+        fontName: 'Arial',
+        fontSize: 14,
+        chartArea: { width: '80%', height: '70%' },
+        hAxis: {
+            title: 'Day',
+            titleTextStyle: { bold: true, fontSize: 16 },
+            format: 'MMM dd' 
+        },
+        vAxis: {
+            title: 'Number of Posts',
+            titleTextStyle: { bold: true, fontSize: 16 }
+        }
+    };
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+
+    chart.draw(data, options);
+}
+    </script>
         <script>
         $(document).ready(function() {
-            $('.delete-btn').click(function() {
-                var userId = $(this).data('id');
-                $.ajax({
-                    url: 'delete_user.php',
-                    method: 'POST',
-                    data: {
-                        user_id: userId
-                    },
-                    success: function(response) {
-                        if (response == 'success') {
-                            location.reload();
-                        } else {
-                            alert('Failed to delete user.');
-                        }
-                    }
-                });
-            });
+    $('.delete-btn').click(function() {
+        var userId = $(this).data('userid'); 
+        $.ajax({
+            url: 'delete_user.php',
+            method: 'POST',
+            data: {
+                user_id: userId
+            },
+            success: function(response) {
+                if (response == 'success') {
+                    location.reload();
+                } else {
+                    alert('Failed to delete user.');
+                }
+            }
         });
+    });
+});
         </script>
 </body>
 
