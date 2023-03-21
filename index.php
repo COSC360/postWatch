@@ -5,7 +5,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>home</title>
+    <title>postWatch-Home</title>
+
     <style>
     #clock {
         width: 200px;
@@ -58,14 +59,16 @@
         margin-top: 20px;
     }
     </style>
+
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/ff48066121.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
     </script>
-
     <link rel="stylesheet" href="./css/styles.css" />
+
     <nav class="navbar navbar-expand-lg navbar-light bg-white static-top">
         <div class="container">
             <a class="navbar-brand" href="#">
@@ -100,9 +103,16 @@
 
     <body onload="startTime()">
         <div class="px-4 py-5 my-2 text-center container">
-            <h1 class="pb-2 border-bottom">
-                Join a Community of Watch Enthusiasts
-            </h1>
+
+
+            <div class="p-4 p-md-5 mb-4 rounded text-bg-dark">
+                <div class="col-md-6 mx-auto text-center">
+                    <h1 class="display-4 ">PostWatch</h1>
+                    <p class="lead my-3"> Join a Community of Watch Enthusiasts
+                    </p>
+
+                </div>
+            </div>
             <section class="featured-collections">
                 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-indicators">
@@ -184,7 +194,7 @@
 
         <hr class="my-4" />
 
-        <div class="container px-4 py-5">
+        <div class="container px-4 py-5 text-center">
             <h2 class="pb-2 border-bottom">Features</h2>
 
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
@@ -238,7 +248,7 @@
             <hr class="my-5" />
         </div>
         <div class="container px-4 py-5">
-            <h2 class="pb-2 border-bottom">Community Guidelines</h2>
+            <h2 class="pb-2 border-bottom text-center">Community Guidelines</h2>
             <br>
 
             <div class="container">

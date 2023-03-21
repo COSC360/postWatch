@@ -35,43 +35,50 @@ $mysqli->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>adminHome</title>
-    <link rel="stylesheet" href="./css/bootstrap-5.3.0-alpha1/bootstrap-5.3.0-alpha1/dist/css/bootstrap.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/ff48066121.js" crossorigin="anonymous"></script>
-    <script src="./css/bootstrap-5.3.0-alpha1/bootstrap-5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+    </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="./css/styles.css" />
     <style>
-    table {
-        padding: 20px;
-        margin-bottom: 50px;
-    }
-    .table {
-        border-radius: 10px;
-    }
-    .table-container {
-  margin-top: 50px;
-}
-    th {
-        font-weight: bold;
-    }
-    .chart-container {
-        position: relative;
-        width: 100%;
-        height: auto;
-        margin-top: 50px;
-    }
-    #chart_div {
-        position: relative;
-        width: 100%;
-        height: 0;
-        padding-bottom: 56.25%;
-    }
-</style>
+        table {
+            padding: 20px;
+            margin-bottom: 50px;
+        }
+
+        .table {
+            border-radius: 10px;
+        }
+
+        .table-container {
+            margin-top: 50px;
+        }
+
+        th {
+            font-weight: bold;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: auto;
+            margin-top: 50px;
+        }
+
+        #chart_div {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%;
+        }
+    </style>
 </head>
 
 <body>
@@ -101,7 +108,7 @@ $mysqli->close();
     <div class="container mt-4">
         <h2>Users</h2>
         <div class="table-responsive table-container">
-  <table class="table table-striped table-sm">
+            <table class="table table-striped table-sm">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -135,40 +142,46 @@ $mysqli->close();
                     }
                     ?>
                 </tbody>
-                </table>
-               <div> <h2>Posts per day</h2></div>
-    <div class="chart-container">
-        <div id="chart_div"></div>
-    </div>
-    </div>
-   
-    
-    </div>
-</div>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript">
-    google.charts.load('current', {'packages':['corechart']});
-    google.charts.setOnLoadCallback(drawChart);
+            </table>
+            <div>
+                <h2>Posts per day</h2>
+            </div>
+            <div class="chart-container">
+                <div id="chart_div"></div>
+            </div>
+        </div>
 
-    function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-            ['Date', 'Posts per day'],
-            <?php
+
+    </div>
+    </div>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {
+            'packages': ['corechart']
+        });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Date', 'Posts per day'],
+                <?php
                 foreach ($dataPoints as $point) {
                     echo "['" . date('Y-m-d', $point['x'] / 1000) . "', " . $point['y'] . "],";
                 }
-            ?>
-        ]);
+                ?>
+            ]);
 
-        var options = {
-            title: 'Posts per day',
-            legend: { position: 'none' }
-        };
+            var options = {
+                title: 'Posts per day',
+                legend: {
+                    position: 'none'
+                }
+            };
 
-        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
-    }
-</script>
+            var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+    </script>
 </body>
 
 <div class="container">
@@ -187,4 +200,5 @@ $mysqli->close();
             </li>
         </ul>
     </footer>
+
 </html>
