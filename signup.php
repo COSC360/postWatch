@@ -1,3 +1,24 @@
+<?php
+if (isset($_GET['error'])) {
+    switch ($_GET['error']) {
+        case 'password':
+            $error_message = "Passwords must match and be at least 8 characters long.";
+            break;
+        case 'username':
+            $error_message = "That username is already taken. Please choose another one.";
+            break;
+        case 'email':
+            $error_message = "That email is already in use. Please use a different email.";
+            break;
+        case 'email_format':
+            $error_message = "The email you entered is not valid. Please enter a valid email address.";
+            break;
+        default:
+            $error_message = "An error occurred. Please try again.";
+            break;
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
