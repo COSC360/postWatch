@@ -41,43 +41,45 @@ $mysqli->close();
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin-Homepage</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/ff48066121.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
     </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="./css/styles.css" />
     <style>
-        table {
-            padding: 20px;
-            margin-bottom: 50px;
-        }
+    table {
+        padding: 20px;
+        margin-bottom: 50px;
+    }
 
-        .table {
-            border-radius: 10px;
-        }
+    .table {
+        border-radius: 10px;
+    }
 
-        .table-container {
-            margin-top: 50px;
-        }
+    .table-container {
+        margin-top: 50px;
+    }
 
-        th {
-            font-weight: bold;
-        }
+    th {
+        font-weight: bold;
+    }
 
-        .chart-container {
-            position: relative;
-            width: 100%;
-            height: auto;
-            margin-top: 50px;
-        }
+    .chart-container {
+        position: relative;
+        width: 100%;
+        height: auto;
+        margin-top: 50px;
+    }
 
-        #chart_div {
-            position: relative;
-            width: 100%;
-            height: 0;
-            padding-bottom: 56.25%;
-        }
+    #chart_div {
+        position: relative;
+        width: 100%;
+        height: 0;
+        padding-bottom: 56.25%;
+    }
     </style>
 </head>
 
@@ -87,7 +89,9 @@ $mysqli->close();
             <a class="navbar-brand" href="#">
                 <img src="./img/logo.png" alt="..." height="80" />
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -129,7 +133,7 @@ $mysqli->close();
                             echo "<td>" . $row['email'] . "</td>";
                             echo "<td>" . $row['num_posts'] . "</td>";
                             echo "<td>
-  <form action='delete_user.php' method='POST' onsubmit='return confirm(\"Are you sure you want to delete this user?\");'>
+  <form action='delete_user.php' method='POST' onsubmit='return confirm(\"Are you sure you want to delete this user? User posts and comments will be deleted too!\");'>
     <input type='hidden' name='userid' value='" . $row['id'] . "'>
     <button type='submit' class='btn btn-danger'>Delete User</button>
   </form>
@@ -156,31 +160,31 @@ $mysqli->close();
     </div>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-        google.charts.load('current', {
-            'packages': ['corechart']
-        });
-        google.charts.setOnLoadCallback(drawChart);
+    google.charts.load('current', {
+        'packages': ['corechart']
+    });
+    google.charts.setOnLoadCallback(drawChart);
 
-        function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['Date', 'Posts per day'],
-                <?php
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Date', 'Posts per day'],
+            <?php
                 foreach ($dataPoints as $point) {
                     echo "['" . date('Y-m-d', $point['x'] / 1000) . "', " . $point['y'] . "],";
                 }
                 ?>
-            ]);
+        ]);
 
-            var options = {
-                title: 'Posts per day',
-                legend: {
-                    position: 'none'
-                }
-            };
+        var options = {
+            title: 'Posts per day',
+            legend: {
+                position: 'none'
+            }
+        };
 
-            var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-            chart.draw(data, options);
-        }
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+    }
     </script>
 </body>
 
