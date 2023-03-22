@@ -7,10 +7,12 @@ if (!isset($_SESSION['user_id'])) {
 } else {
     $mysqli = require __DIR__ . '/database.php';
 
-    // get all posts and their authors from post table user user_id which is the foreign key in post table connecting to user table 
-    $statement = $mysqli->prepare("SELECT post.id, post.title, post.content, post.image, post.date, user.username FROM post INNER JOIN user ON post.user_id = user.id ORDER BY post.date DESC");
+    //     $statement = $mysqli->prepare("SELECT post.id, post.title, post.content, post.image, post.date, user.username FROM post INNER JOIN user ON post.user_id = user.id ORDER BY post.date DESC");
+
+    // get all posts and their authors from post table user user_id which is the foreign key in post table connecting to user table also get number of comments for each post
+    $statement = $mysqli->prepare("SELECT post.id, post.title, post.content, post.image, post.date, user.username, COUNT(comments.id) AS num_comments FROM post INNER JOIN user ON post.user_id = user.id LEFT JOIN comments ON post.id = comments.post_id GROUP BY post.id, post.title, post.content, post.image, post.date, user.username ORDER BY post.date DESC");
     $statement->execute();
-    $statement->bind_result($id, $title, $content, $image, $date, $username);
+    $statement->bind_result($id, $title, $content, $image, $date, $username, $num_comments);
     $posts = $statement->get_result()->fetch_all(MYSQLI_ASSOC);
 }
 ?>
@@ -22,7 +24,7 @@ if (!isset($_SESSION['user_id'])) {
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>postsFeed</title>
+    <title>User-postsFeed</title>
 
     <link rel="stylesheet" href="path/to/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
@@ -89,8 +91,12 @@ if (!isset($_SESSION['user_id'])) {
                         <a href="fullPost.php?id=<?php echo $post['id']; ?>" class="stretched-link">Continue
                             reading</a>
                         <div class="mt-3 d-flex align-items-center">
-                            <span class="me-4"><i class="bi bi-heart text-danger hover-text-danger"></i></span>
-                            <span class="ms-4"><i class="bi bi-chat-dots text-primary hover-text-primary"></i></span>
+                            <span class="me-4"><i class="bi bi-heart text-danger hover-text-danger">
+                                    <?php echo "in progress" ?>
+                                </i></span>
+                            <span class="ms-4"><i class="bi bi-chat-dots text-primary hover-text-primary">
+                                    <?php echo  $post["num_comments"];  ?>
+                                </i></span>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-4 d-flex align-items-center p-2">
