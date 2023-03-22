@@ -1,24 +1,3 @@
-<?php
-if (isset($_GET['error'])) {
-    switch ($_GET['error']) {
-        case 'password':
-            $error_message = "Passwords must match and be at least 8 characters long.";
-            break;
-        case 'username':
-            $error_message = "That username is already taken. Please choose another one.";
-            break;
-        case 'email':
-            $error_message = "That email is already in use. Please use a different email.";
-            break;
-        case 'email_format':
-            $error_message = "The email you entered is not valid. Please enter a valid email address.";
-            break;
-        default:
-            $error_message = "An error occurred. Please try again.";
-            break;
-    }
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,15 +5,54 @@ if (isset($_GET['error'])) {
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>signup</title>
+    <title>User-Signup</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
     </script>
-
     <link rel="stylesheet" href="./css/styles.css" />
+
+    <script>
+    function validateForm() {
+        var username = document.forms["signupform"]["username"].value;
+        var email = document.forms["signupform"]["email"].value;
+        var password = document.forms["signupform"]["password"].value;
+        var cpassword = document.forms["signupform"]["confirmPassword"].value;
+
+        // Email validation using regular expression
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            alert("Invalid email address");
+            return false;
+        }
+
+        // Password validation
+        var passwordRegex = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+        if (!passwordRegex.test(password)) {
+            alert(
+                "Password must be at least 8 characters long and contain at least one number, one uppercase letter, one lowercase letter, and one special character");
+            return false;
+        }
+
+        if (username == "") {
+            alert("Username cannot be empty");
+            return false;
+        }
+        if (password == "") {
+            alert("Password cannot be empty");
+            return false;
+        }
+        if (cpassword == "") {
+            alert("Confirm Password cannot be empty");
+            return false;
+        }
+        if (password != cpassword) {
+            alert("Passwords do not match");
+            return false;
+        }
+    }
+    </script>
     <nav class="navbar navbar-expand-lg navbar-light bg-white static-top">
         <div class="container">
             <a class="navbar-brand" href="#">
@@ -63,7 +81,7 @@ if (isset($_GET['error'])) {
 <body>
     <div class="d-flex flex-column align-items-center mt-5">
         <h1 class="text-center">Sign Up</h1>
-        <form class="w-50" action="process-signup.php" method="POST">
+        <form class="w-50" action="process-signup.php" method="POST" name="signupform" onsubmit="return validateForm()">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" class="form-control" id="username" aria-describedby="usernameHelp"
@@ -82,7 +100,7 @@ if (isset($_GET['error'])) {
             <div class="form-group">
                 <label for="confirmPassword">Confirm Password</label>
                 <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password"
-                    name="confirmPassword" />
+                    name="confirmPassword" required />
             </div>
             <br />
             <div class="d-flex justify-content-center">
@@ -100,7 +118,6 @@ if (isset($_GET['error'])) {
 <div class="container">
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
         <p class="col-md-4 mb-0 text-muted">&copy; 2023 PostWatch</p>
-
         <ul class="nav col-md-4 justify-content-end">
             <li class="nav-item">
                 <a href="#" class="nav-link px-2 text-muted">Home</a>
