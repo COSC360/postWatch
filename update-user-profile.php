@@ -1,43 +1,50 @@
 <?php
+session_start();
+if (!isset($_SESSION["user_id"])) {
+    header("Location: index.php");
+    exit;
+}
+
+$user_id = $_SESSION["user_id"];
+$mysqli = require __DIR__ . '/database.php';
+
+// If the profile picture is set, update the profile picture
 if (isset($_FILES["profile_pic"])) {
-    // get the form data and save it as variables
     $profile_pic = $_FILES["profile_pic"]["name"];
     $profile_pic_tmp_name = $_FILES["profile_pic"]["tmp_name"];
 
-    // get the user id from the session who is logged in
-    session_start();
-    $user_id = $_SESSION["user_id"];
-
-    // connect to the database
-    $mysqli = require __DIR__ . '/database.php';
-
-    // upload the image file to the server
-    $image_dir = 'uploads/'; // directory to upload images
-    $image_path = $image_dir . $profile_pic; // path to store in the database
+    $image_dir = 'uploads/';
+    $image_path = $image_dir . $profile_pic;
     move_uploaded_file($profile_pic_tmp_name, $image_path);
 
-    // insert the post into the database
     $sql = "UPDATE user SET profile_pic = ? WHERE id = ?";
-
-    // prepare statement
     $stmt = $mysqli->stmt_init();
 
-    // check if statement is valid
     if (!$stmt->prepare($sql)) {
         die("SQL error " . $mysqli->error);
     }
 
-    // bind parameters to statement
     $stmt->bind_param("si", $image_path, $user_id);
 
-    // execute statement
-    if ($stmt->execute()) {
-        // redirect to posts page
-        header("Location: userHomepage.php");
-        exit;
-    } else {
+    if (!$stmt->execute()) {
         die($mysqli->error . " " . $mysqli->errno);
     }
-} else {
-    echo "Fill all the fields";
 }
+
+// If the username and email are set, update the username and email
+if (isset($_POST["username"]) && isset($_POST["email"])) {
+    $newUsername = $_POST["username"];
+    $newEmail = $_POST["email"];
+
+    $update_sql = "UPDATE user SET username = ?, email = ? WHERE id = ?";
+    $update_stmt = $mysqli->prepare($update_sql);
+    $update_stmt->bind_param("ssi", $newUsername, $newEmail, $user_id);
+
+    if (!$update_stmt->execute()) {
+        die($mysqli->error . " " . $mysqli->errno);
+    }
+}
+
+// Redirect to the user homepage
+header("Location: userHomepage.php");
+exit;
