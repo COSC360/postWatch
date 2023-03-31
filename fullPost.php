@@ -82,6 +82,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     header("Location: fullPost.php?id=$post_id");
 }
 
+function add_like($mysqli, $user_id, $post_id)
+{
+    if (!has_user_liked_post($mysqli, $user_id, $post_id)) {
+        $stmt = $mysqli->prepare("INSERT INTO likes (user_id, post_id) VALUES (?, ?)");
+        $stmt->bind_param('ii', $user_id, $post_id);
+        $stmt->execute();
+    }
+}
+
+
+
+function get_likes_count($mysqli, $post_id)
+{
+    $result = $mysqli->query("SELECT COUNT(*) as likes_count FROM likes WHERE post_id = $post_id");
+    $row = $result->fetch_assoc();
+    return $row['likes_count'];
+}
+
+
+function has_user_liked_post($mysqli, $user_id, $post_id)
+{
+    $result = $mysqli->query("SELECT * FROM likes WHERE user_id = $user_id AND post_id = $post_id");
+    return $result->num_rows > 0;
+}
+
+
+
+if (isset($_GET['like']) && $_GET['like'] == '1') {
+    add_like($mysqli, $_SESSION['user_id'], $id);
+    header("Location: fullPost.php?id=$id");
+}
+
 
 
 
@@ -97,32 +129,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
-    .navbar-nav .nav-link:hover {
-        background-color: #3d464e;
-        border-radius: 10%;
+        .navbar-nav .nav-link:hover {
+            background-color: #3d464e;
+            border-radius: 10%;
 
-    }
+        }
 
-    .btn:hover {
-        background-color: #f1f1f1;
-    }
+        .btn:hover {
+            background-color: #f1f1f1;
+        }
 
-    .btn i {
-        margin-right: 5px;
-    }
+        .btn i {
+            margin-right: 5px;
+        }
     </style>
 
     <title>Full-Post</title>
     <link rel="stylesheet" href="path/to/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
 
     <script src="https://kit.fontawesome.com/ff48066121.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
     </script>
 
     <link rel="stylesheet" href="./css/styles.css" />
@@ -132,9 +162,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <a class="navbar-brand" href="#">
                 <img src="./img/logo.png" alt="..." height="80" />
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -160,8 +188,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="p-4 p-md-5 mb-4 rounded text-center bg-dark text-light">
             <h1 class="display-4 fst-italic">Full Post</h1>
             <p class="lead my-3">Read entire content here, like and comment</p>
-            <button class="btn btn-primary" onclick="history.go(-1)"><i class="bi bi-arrow-left"></i> Go Back
-            </button>
+            <div>
+
+                <button class="btn btn-primary" onclick="window.location.href='postsFeed.php'"><i class=" bi bi-journal-text"></i>
+                    Posts Feed</button> <button class="btn btn-primary me-2" onclick="window.location.href='userHomepage.php'"><i class="bi bi-house"></i> Home</button>
+            </div>
         </div>
         <div class="container border rounded">
             <div class="row">
@@ -176,16 +207,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         $profilepicture = './img/userProimg.jpg'; // set default profile picture
                     }
                     ?>
-                    <img src="<?php echo $profilepicture; ?>" class="img-fluid rounded-circle mb-2" alt="User Image"
-                        style="width: 50px; height: 50px;" />
+                    <img src="<?php echo $profilepicture; ?>" class="img-fluid rounded-circle mb-2" alt="User Image" style="width: 50px; height: 50px;" />
                     <p class="mb-2">By <?php echo $username; ?></p>
 
                     <div class="d-flex align-items-center">
-                        <p class="me-3">Likes:</p>
+                        <p class="me-3">Likes: <?php echo get_likes_count($mysqli, $id); ?></p>
                         <p>Comments: <?php echo count($comments); ?></p>
                     </div>
-                    <button class="btn btn-outline-primary me-3"><i class="bi bi-hand-thumbs-up"></i>
-                        Like</button>
+                    <?php if (has_user_liked_post($mysqli, $_SESSION['user_id'], $id)) : ?>
+                        <button class="btn btn-primary me-3" disabled><i class="bi bi-hand-thumbs-up"></i> Liked</button>
+                    <?php else : ?>
+                        <button class="btn btn-outline-primary me-3" onclick="likePost()"><i class="bi bi-hand-thumbs-up"></i> Like</button>
+                    <?php endif; ?>
+
+
                     <hr>
                     <p><?php echo $content; ?></p>
                 </div>
@@ -195,13 +230,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="container my-5">
             <h2>Comments</h2>
             <?php foreach ($comments as $comment) : ?>
-            <div class="card my-3">
-                <div class="card-body">
-                    <h5 class="card-title"><?php echo $comment['username']; ?></h5>
-                    <h6 class="card-subtitle mb-2 text-muted"><?php echo $comment['date']; ?></h6>
-                    <p class="card-text"><?php echo $comment['content']; ?></p>
+                <div class="card my-3">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $comment['username']; ?></h5>
+                        <h6 class="card-subtitle mb-2 text-muted"><?php echo $comment['date']; ?></h6>
+                        <p class="card-text"><?php echo $comment['content']; ?></p>
+                    </div>
                 </div>
-            </div>
             <?php endforeach; ?>
 
             <hr>
@@ -220,14 +255,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </main>
     <style>
-    img {
-        max-height: 400px;
-        margin-top: 20px;
-        border-radius: 5px;
-    }
+        img {
+            max-height: 400px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
     </style>
     <script>
-    // like post
+        // like post
+        function likePost() {
+            location.href = 'fullPost.php?id=<?php echo $id; ?>&like=1';
+        }
     </script>
 
 </body>
