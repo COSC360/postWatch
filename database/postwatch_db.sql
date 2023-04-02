@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 19, 2023 at 07:36 AM
+-- Generation Time: Apr 02, 2023 at 09:20 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -66,7 +66,8 @@ INSERT INTO `comments` (`id`, `user_id`, `post_id`, `content`, `date`) VALUES
 (3, 8, 8, 'amazing!', '2023-03-19 09:35:27'),
 (4, 8, 10, 'I never knew the intricacy and skill required in watch photography until reading this post! The way a photographer can capture the beauty and craftsmanship of a timepiece is truly remarkable. As a lover of luxury watches myself, I now have an even deeper appreciation for the artistry that goes into creating and photographing these pieces.', '2023-03-19 14:12:39'),
 (5, 8, 9, 'Great guide on maintaining watches! Regular cleaning, proper storage, regular servicing, avoiding water and magnetic fields, and gentle handling are all essential for ensuring the longevity and functionality of your watch. Don\'t forget to replace batteries and straps as needed!', '2023-03-19 14:25:19'),
-(6, 10, 10, 'Thank you for taking the time to comment Top G! ', '2023-03-19 14:28:19');
+(6, 10, 10, 'Thank you for taking the time to comment Top G! ', '2023-03-19 14:28:19'),
+(7, 8, 11, 'sdfsdf', '2023-04-01 03:18:07');
 
 -- --------------------------------------------------------
 
@@ -79,6 +80,43 @@ CREATE TABLE `likes` (
   `user_id` int(11) NOT NULL,
   `post_id` int(11) NOT NULL,
   `data` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `likes`
+--
+
+INSERT INTO `likes` (`id`, `user_id`, `post_id`, `data`) VALUES
+(1, 8, 8, '2023-03-31 18:08:42'),
+(2, 8, 8, '2023-03-31 18:08:50'),
+(3, 8, 13, '2023-03-31 18:11:49'),
+(4, 8, 4, '2023-03-31 18:17:09'),
+(5, 8, 5, '2023-03-31 18:17:27'),
+(6, 8, 11, '2023-03-31 18:18:00'),
+(7, 8, 5, '2023-03-31 18:20:59'),
+(8, 8, 5, '2023-03-31 18:21:04'),
+(9, 8, 5, '2023-03-31 18:21:06'),
+(10, 8, 5, '2023-03-31 18:21:08'),
+(11, 8, 5, '2023-03-31 18:21:35'),
+(12, 8, 5, '2023-03-31 18:21:37'),
+(13, 8, 5, '2023-03-31 18:21:38'),
+(14, 8, 5, '2023-03-31 18:21:40'),
+(15, 8, 5, '2023-03-31 18:21:41'),
+(16, 8, 10, '2023-03-31 18:29:39'),
+(17, 8, 12, '2023-03-31 19:47:54'),
+(18, 9, 9, '2023-03-31 20:04:22');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_reset_request`
+--
+
+CREATE TABLE `password_reset_request` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `token` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -132,7 +170,8 @@ INSERT INTO `user` (`id`, `username`, `email`, `password_hashed`, `profile_pic`)
 (1, 'usernenen', 'tushanshahid0@gmail.com', '$2y$10$Zbtni6C5Xewti3OS3tJKUOnU.P4KHYa10cdVymOZMeduh..dCxYmi', NULL),
 (8, 'Top G', 'topg@email.com', '$2y$10$b5fdcaJpAf8GsT3gvVxhhezFQ4bi6orA926coCYOe3ph2Hr.4BZjG', 0x75706c6f6164732f70726f506963312e6a7067),
 (9, 'Top G2', 'topg2@email.com', '$2y$10$5PxxOIHNvXaXIQ3ryKt27OLqaUjkhb87NmIoIovLPKNySEDCTSHiy', NULL),
-(10, 'JohnDoe99', 'johndoe@email.com', '$2y$10$.nEBvH/xP6JzNoZHF/P.7.h4MyWbCOW3Yr6fsGAADGd80ybKhiMLO', 0x75706c6f6164732f70726f506963322e6a7067);
+(10, 'JohnDoe99', 'johndoe@email.com', '$2y$10$.nEBvH/xP6JzNoZHF/P.7.h4MyWbCOW3Yr6fsGAADGd80ybKhiMLO', 0x75706c6f6164732f70726f506963322e6a7067),
+(11, 'new', 's.s.tushan@gmail.com', '$2y$10$D9cw0ubW/atXMWqqkgf6Uu7jp7IwjmjZ3qPo1adDuVF19xRkwPYTO', NULL);
 
 --
 -- Indexes for dumped tables
@@ -159,6 +198,14 @@ ALTER TABLE `comments`
 ALTER TABLE `likes`
   ADD PRIMARY KEY (`id`),
   ADD KEY `post_id` (`post_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `password_reset_request`
+--
+ALTER TABLE `password_reset_request`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `token` (`token`),
   ADD KEY `user_id` (`user_id`);
 
 --
@@ -189,13 +236,19 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `password_reset_request`
+--
+ALTER TABLE `password_reset_request`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `post`
@@ -207,7 +260,7 @@ ALTER TABLE `post`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables
@@ -226,6 +279,12 @@ ALTER TABLE `comments`
 ALTER TABLE `likes`
   ADD CONSTRAINT `likes_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `post` (`id`),
   ADD CONSTRAINT `likes_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+
+--
+-- Constraints for table `password_reset_request`
+--
+ALTER TABLE `password_reset_request`
+  ADD CONSTRAINT `password_reset_request_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
 -- Constraints for table `post`

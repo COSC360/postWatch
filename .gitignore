@@ -1,0 +1,19 @@
+# .gitignore
+
+# Sensitive data
+.env
+
+# Composer dependencies
+/vendor/
+/composer.lock
+
+# Cache and temporary files
+*.log
+*.cache
+*.tmp
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+
