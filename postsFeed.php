@@ -7,8 +7,23 @@ if (!isset($_SESSION['user_id'])) {
 } else {
     $mysqli = require __DIR__ . '/database.php';
 
-    // get all posts and their authors, number of comments and likes for each post
-    $statement = $mysqli->prepare("SELECT post.id, post.title, post.content, post.image, post.date, user.username, COUNT(DISTINCT comments.id) AS num_comments, COUNT(DISTINCT likes.id) AS num_likes FROM post INNER JOIN user ON post.user_id = user.id LEFT JOIN comments ON post.id = comments.post_id LEFT JOIN likes ON post.id = likes.post_id GROUP BY post.id, post.title, post.content, post.image, post.date, user.username ORDER BY post.date DESC");
+    // Filter logic
+    $filter = isset($_GET['filter']) ? $_GET['filter'] : 'latest';
+
+    // Prepare the SQL query based on the selected filter
+    switch ($filter) {
+        case 'likes':
+            $order_by = "num_likes DESC, post.date DESC";
+            break;
+        case 'comments':
+            $order_by = "num_comments DESC, post.date DESC";
+            break;
+        default:
+            $order_by = "post.date DESC";
+    }
+
+    // Get all posts and their authors, number of comments and likes for each post
+    $statement = $mysqli->prepare("SELECT post.id, post.title, post.content, post.image, post.date, user.username, COUNT(DISTINCT comments.id) AS num_comments, COUNT(DISTINCT likes.id) AS num_likes FROM post INNER JOIN user ON post.user_id = user.id LEFT JOIN comments ON post.id = comments.post_id LEFT JOIN likes ON post.id = likes.post_id GROUP BY post.id, post.title, post.content, post.image, post.date, user.username ORDER BY $order_by");
     $statement->execute();
     $statement->bind_result($id, $title, $content, $image, $date, $username, $num_comments, $num_likes);
     $posts = $statement->get_result()->fetch_all(MYSQLI_ASSOC);
@@ -71,9 +86,19 @@ if (!isset($_SESSION['user_id'])) {
                 <button class="btn btn-primary" onclick="location.href='userHomepage.php'"><i
                         class="bi bi-arrow-left"></i> Go
                     Back Home</button>
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="filterMenu"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Filter
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="filterMenu">
+                    <li><a class="dropdown-item" href="?filter=latest">Latest</a></li>
+                    <li><a class="dropdown-item" href="?filter=likes">Top Likes</a></li>
+                    <li><a class="dropdown-item" href="?filter=comments">Top Comments</a></li>
+                </ul>
 
             </div>
         </div>
+
         <div class="row mb-2 align-items-stretch">
             <?php foreach ($posts as $post) : ?>
             <div class="col-md-6">
