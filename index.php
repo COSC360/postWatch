@@ -12,7 +12,7 @@
         width: 200px;
         height: 200px;
         border-radius: 50%;
-        border: 10px solid black;
+        border: 10px solid white;
         position: relative;
         margin: auto;
     }
@@ -20,7 +20,7 @@
     #hour-hand {
         width: 6px;
         height: 50px;
-        background-color: black;
+        background-color: white;
         position: absolute;
         top: 50%;
         left: 50%;
@@ -32,7 +32,7 @@
     #minute-hand {
         width: 4px;
         height: 80px;
-        background-color: black;
+        background-color: white;
         position: absolute;
         top: 50%;
         left: 50%;
@@ -44,7 +44,7 @@
     #clock-face {
         width: 12px;
         height: 12px;
-        background-color: black;
+        background-color: white;
         position: absolute;
         top: 50%;
         left: 50%;
@@ -57,6 +57,23 @@
         font-weight: bold;
         text-align: center;
         margin-top: 20px;
+    }
+
+    .animated-text {
+        opacity: 0;
+        animation-name: fadeIn;
+        animation-duration: 2s;
+        animation-fill-mode: forwards;
+    }
+
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
     }
     </style>
 
@@ -107,9 +124,13 @@
 
             <div class="p-4 p-md-5 mb-4 rounded text-bg-dark">
                 <div class="col-md-6 mx-auto text-center">
-                    <h1 class="display-4 ">PostWatch</h1>
-                    <p class="lead my-3"> Join a Community of Watch Enthusiasts
-                    </p>
+                    <div id="clock">
+                        <div id="hour-hand"></div>
+                        <div id="minute-hand"></div>
+                        <div id="clock-face"></div>
+                    </div>
+                    <h2 class="lead my-3 animated-text">It's time to join a community of watch enthusiasts</h2>
+
 
                 </div>
             </div>
@@ -183,12 +204,12 @@
                     </a>
                 </div>
 
-                <div id="clock">
+                <!-- <div id="clock">
                     <div id="hour-hand"></div>
                     <div id="minute-hand"></div>
                     <div id="clock-face"></div>
                 </div>
-                <div id="clock-time"></div>
+                <div id="clock-time"></div> -->
             </div>
         </div>
 
