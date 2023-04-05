@@ -68,11 +68,12 @@ if (!isset($_SESSION['admin_id'])) {
                 <ul class="navbar-nav ms-auto">
                 <li>
                         <a href="adminHome.php">
-                            <button type="button" class="btn btn-outline-secondary btn-sm px-4">
+                            <button type="button" class="btn  btn-sm px-4">
                                 Home
                             </button></a>
                     </li>
                     <li class="nav-item dropdown"></li>
+                    <br>
                     <li>
                         <a href="logout.php">
                             <button type="button" class="btn btn-outline-secondary btn-sm px-4">
