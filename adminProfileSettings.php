@@ -32,6 +32,12 @@ if (!isset($_SESSION['admin_id'])) {
     .btn i {
         margin-right: 5px;
     }
+    .justify-content-center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
     </style>
 
 
@@ -82,34 +88,30 @@ if (!isset($_SESSION['admin_id'])) {
 </head>
 
 <body>
-
-
-
+    <main>
+        <div class="container">
+            <div class="row justify-content-center"> <!-- add this class -->
                 <div class="col-9">
                     <h1> Profile Settings </h1>
                     <br>
                     <form action="update-admin-profile.php" method="POST" enctype="multipart/form-data">
-                    <div class="mb-3">
-    <label for="username" class="form-label">Update name:</label>
-    <input type="text" class="form-control" id="username" name="username"
-        value="<?php echo $admin['username']; ?>" required>
-</div>
-<div class="mb-3">
-    <label for="email" class="form-label">Update Email:</label>
-    <input type="email" class="form-control" id="email" name="email"
-        value="<?php echo $admin['email']; ?>" required>
-</div>
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Update name:</label>
+                            <input type="text" class="form-control" id="username" name="username"
+                                value="<?php echo $admin['username']; ?>" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Update Email:</label>
+                            <input type="email" class="form-control" id="email" name="email"
+                                value="<?php echo $admin['email']; ?>" required>
+                        </div>
                         <br>
                         <button type="submit" class="btn btn-primary mt-2">Update Profile</button>
                     </form>
-
                 </div>
             </div>
         </div>
-        </div>
     </main>
-
-
 </body>
 
 <div class="container">

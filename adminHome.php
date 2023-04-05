@@ -28,8 +28,18 @@ if ($result_posts_per_day->num_rows > 0) {
         $dataPoints[] = array("x" => $date, "y" => $num_posts);
     }
 }
-
-// Close the database connection
+$sql_posts = "SELECT post.id, post.title, COUNT(DISTINCT likes.id) AS num_likes, COUNT(DISTINCT comments.id) AS num_comments
+              FROM post
+              LEFT JOIN likes ON post.id = likes.post_id
+              LEFT JOIN comments ON post.id = comments.post_id
+              GROUP BY post.id, post.title";
+     $result_posts = $mysqli->query($sql_posts);    
+     $dataPoint = array();
+if ($result_posts->num_rows > 0) {
+    while ($row = $result_posts->fetch_assoc()) {
+        $dataPoint[] = array("x" => $row['num_likes'], "y" => $row['num_comments'], "post_id" => $row['id'], "title" => $row['title']);
+    }
+}     
 $mysqli->close();
 
 ?>
@@ -48,30 +58,49 @@ $mysqli->close();
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
     </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.bundle.min.js"></script>
+
     <link rel="stylesheet" href="./css/styles.css" />
     <style>
-    table {
-        padding: 20px;
-        margin-bottom: 50px;
-    }
+  .table-graph-scatter {
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+ table {
+  padding: 20px;
+  margin-bottom: 10px;
+  border-collapse: collapse;
+}
 
-    .table {
-        border-radius: 10px;
-    }
+.table {
+  border-radius: 10px;
+  overflow: hidden;
+}
 
-    .table-container {
-        margin-top: 50px;
-    }
+.table thead th {
+  background-color: #F2F2F2;
+  font-weight: bold;
+}
 
-    th {
-        font-weight: bold;
-    }
+.table tbody tr {
+  transition: all .2s ease-in-out;
+}
+
+.table tbody tr:hover {
+  background-color: #F2F2F2;
+}
+
+.table tbody tr td:first-child {
+  font-weight: bold;
+}
 
     .chart-container {
         position: relative;
         width: 100%;
         height: auto;
-        margin-top: 50px;
+        margin-top: 20px;
     }
 
     #chart_div {
@@ -100,7 +129,7 @@ $mysqli->close();
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Profile Settings</a>
+                        <a class="nav-link" href="adminProfileSettings.php">Profile Settings</a>
                     </li>
                     <li class="nav-item">
                         <a href="logout.php" class="btn btn-outline-secondary btn-sm px-4">Sign Out</a>
@@ -112,7 +141,7 @@ $mysqli->close();
     <div class="container mt-4">
         <h2>Users</h2>
         <div class="table-responsive table-container">
-            <table class="table table-striped table-sm">
+            <table class="table table-striped table-sm ">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -149,13 +178,71 @@ $mysqli->close();
             </table>
             <div>
                 <h2>Posts per day</h2>
-            </div>
+                </div>
             <div class="chart-container">
                 <div id="chart_div"></div>
             </div>
+                <h2> Interactions per Post </h2>
+                <div class="chart-container">
+  <canvas id="scatterChart"></canvas>
+</div>
+<script>
+  var scatterChart = new Chart(document.getElementById("scatterChart"), {
+    type: 'scatter',
+    data: {
+      datasets: [{
+        label: 'Likes vs Comments',
+        data: <?php echo json_encode($dataPoint); ?>,
+        backgroundColor: 'rgba(0, 119, 204, 0.3)',
+        pointRadius: 5,
+        pointHoverRadius: 10,
+        pointHitRadius: 30,
+        pointBorderWidth: 2,
+        pointStyle: 'rectRounded'
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      title: {
+        display: true,
+        text: 'Likes vs Comments Scatterplot'
+      },
+      legend: {
+    display: true,
+    position: 'bottom'
+  },
+      scales: {
+        xAxes: [{
+          type: 'linear',
+          position: 'bottom',
+          scaleLabel: {
+            display: true,
+            labelString: 'Likes'
+          }
+        }],
+        yAxes: [{
+          scaleLabel: {
+            display: true,
+            labelString: 'Comments'
+          }
+        }]
+      },
+      tooltips: {
+        callbacks: {
+          title: function(tooltipItem, data) {
+            return data.datasets[tooltipItem[0].datasetIndex].data[tooltipItem[0].index].title;
+          },
+          label: function(tooltipItem, data) {
+            return '(' + data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].x + ', ' + data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].y + ')';
+          }
+        }
+      }
+    }
+  });
+</script>
+            </div>
         </div>
-
-
     </div>
     </div>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
