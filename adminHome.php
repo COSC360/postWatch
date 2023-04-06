@@ -20,18 +20,6 @@ if (isset($_SESSION["admin_id"])) {
   $result = $mysqli->query($sql);
 }
 
-if (isset($_POST['delete_post'])) {
-  $post_id = $_POST['post_id'];
-
-  $delete_comments_sql = "DELETE FROM comments WHERE post_id = $post_id";
-  $mysqli->query($delete_comments_sql);
-
-  $delete_likes_sql = "DELETE FROM likes WHERE post_id = $post_id";
-  $mysqli->query($delete_likes_sql);
-
-  $delete_post_sql = "DELETE FROM post WHERE id = $post_id";
-  $mysqli->query($delete_post_sql);
-}
 
 $sqldisplaypost = "SELECT post.id, post.title, post.content, post.date, user.username, COUNT(DISTINCT likes.id) AS num_likes, COUNT(DISTINCT comments.id) AS num_comments
 FROM post
@@ -152,7 +140,7 @@ $mysqli->close();
         <td><?php echo $row['num_likes']; ?></td>
         <td><?php echo $row['num_comments']; ?></td>
         <td>
-        <form method="POST" onsubmit="return confirm('Are you sure you want to delete this post? All associated comments and likes will be deleted too!')">
+        <form action='delete_post.php' method='POST'  onsubmit="return confirm('Are you sure you want to delete this post? All associated comments and likes will be deleted too!')">
   <input type="hidden" name="post_id" value="<?php echo $row['id']; ?>">
   <button type="submit" name="delete_post" class="btn btn-danger">Delete</button>
 </form>
