@@ -78,7 +78,6 @@ $mysqli->close();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.bundle.min.js"></script>
-
     <link rel="stylesheet" href="./css/styles.css">
     <style>
         .table-responsive {
@@ -190,102 +189,106 @@ $mysqli->close();
             </table>
             <br>
             <div class="container">
-                <h2>Posts per day</h2>
-                </div>
-            <div class="chart-container">
-                <div id="chart_div"></div>
-            </div>
-            <br>
-                <h2> Interactions per Post </h2>
-                <div class="container chart-container">
-  <canvas id="scatterChart"></canvas>
+    <h2>Posts per day</h2>
 </div>
+<div class="chart-container">
+    <div id="chart_div"></div>
+</div>
+<br>
+<h2> Interactions per Post </h2>
+<div class="container chart-container">
+    <canvas id="scatterChart"></canvas>
+</div>
+</div>
+    </div>
+    </div>
+    </div>
 <script>
-  var scatterChart = new Chart(document.getElementById("scatterChart"), {
-    type: 'scatter',
-    data: {
-      datasets: [{
-        label: 'Likes vs Comments',
-        data: <?php echo json_encode($dataPoint); ?>,
-        backgroundColor: 'rgba(0, 119, 204, 0.3)',
-        pointRadius: 3,
-        pointHoverRadius: 6,
-        pointHitRadius: 10,
-        pointBorderWidth: 1,
-        pointStyle: 'rectRounded'
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      title: {
-        display: true,
-        text: 'Likes vs Comments Scatterplot'
-      },
-      legend: {
-        display: true,
-        position: 'bottom'
-      },
-      scales: {
-        xAxes: [{
-          type: 'linear',
-          position: 'bottom',
-          scaleLabel: {
-            display: true,
-            labelString: 'Likes'
-          }
-        }],
-        yAxes: [{
-          scaleLabel: {
-            display: true,
-            labelString: 'Comments'
-          }
-        }]
-      },
-      tooltips: {
-        callbacks: {
-          title: function(tooltipItem, data) {
-            return data.datasets[tooltipItem[0].datasetIndex].data[tooltipItem[0].index].title;
-          },
-          label: function(tooltipItem, data) {
-            return '(' + data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].x + ', ' + data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].y + ')';
-          }
-        }
-      }
-    }
-  });
-</script>
-            </div>
-        </div>
-    </div>
-    </div>
+                var scatterChart = new Chart(document.getElementById("scatterChart"), {
+                    type: 'scatter',
+                    data: {
+                        datasets: [{
+                            label: 'Likes vs Comments',
+                            data: <?php echo json_encode($dataPoint); ?>,
+                            backgroundColor: 'rgba(0, 119, 204, 0.3)',
+                            pointRadius: 3,
+                            pointHoverRadius: 6,
+                            pointHitRadius: 10,
+                            pointBorderWidth: 1,
+                            pointStyle: 'rectRounded'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        title: {
+                            display: true,
+                            text: 'Likes vs Comments Scatterplot'
+                        },
+                        legend: {
+                            display: true,
+                            position: 'bottom'
+                        },
+                        scales: {
+                            xAxes: [{
+                                type: 'linear',
+                                position: 'bottom',
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Likes'
+                                }
+                            }],
+                            yAxes: [{
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Comments'
+                                }
+                            }]
+                        },
+                        tooltips: {
+                            callbacks: {
+                                title: function(tooltipItem, data) {
+                                    return data.datasets[tooltipItem[0].datasetIndex].data[tooltipItem[0].index]
+                                        .title;
+                                },
+                                label: function(tooltipItem, data) {
+                                    return '(' + data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index]
+                                        .x + ', ' + data.datasets[tooltipItem.datasetIndex].data[tooltipItem
+                                            .index].y + ')';
+                                }
+                            }
+                        }
+                    }
+                });
+            </script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-    google.charts.load('current', {
-        'packages': ['corechart']
-    });
-    google.charts.setOnLoadCallback(drawChart);
+        google.charts.load('current', {
+            'packages': ['corechart']
+        });
+        google.charts.setOnLoadCallback(drawChart);
 
-    function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-            ['Date', 'Posts per day'],
-            <?php
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Date', 'Posts per day'],
+                <?php
                 foreach ($dataPoints as $point) {
                     echo "['" . date('Y-m-d', $point['x'] / 1000) . "', " . $point['y'] . "],";
                 }
                 ?>
-        ]);
+            ]);
+            var options = {
+                height: 400,
 
-        var options = {
-            title: 'Posts per day',
-            legend: {
-                position: 'none'
-            }
-        };
+                title: 'Posts per day',
+                legend: {
+                    position: 'none'
+                }
 
-        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
-    }
+            };
+            var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
     </script>
 </body>
 
