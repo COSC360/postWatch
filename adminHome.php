@@ -81,26 +81,32 @@ $mysqli->close();
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin-Homepage</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/ff48066121.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.bundle.min.js"></script>
 
-    <link rel="stylesheet" href="./css/styles.css" />
-  
+    <link rel="stylesheet" href="./css/styles.css">
+    <style>
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        .table-responsive th,
+        .table-responsive td {
+            white-space: nowrap;
+        }
+    </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-white static-top">
-        <div class="container">
+<nav class="navbar navbar-expand-lg navbar-light bg-white static-top">
+<div class="container">
             <a class="navbar-brand" href="#">
                 <img src="./img/logo.png" alt="..." height="80" />
             </a>
@@ -125,8 +131,8 @@ $mysqli->close();
         </div>
     </nav>
     <br>
-    <div class=" container table-responsive table-container">
-    <table  class="table table-striped table-sm ">
+    <div class=" container mt-5 table-responsive">
+    <table  class="table table-striped table-sm table-bordered">
   <thead>
     <tr>
       <th><h2> Posts </h2> </th>
@@ -156,10 +162,10 @@ $mysqli->close();
   </tbody>
 </table>
 </div>
-    <div class="container">
+    <div class="container mt-5">
         <h2>Users</h2>
         <div class="table-responsive table-container">
-            <table class="table table-striped table-sm ">
+            <table class="table table-striped table-sm table-bordered ">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -214,10 +220,10 @@ $mysqli->close();
         label: 'Likes vs Comments',
         data: <?php echo json_encode($dataPoint); ?>,
         backgroundColor: 'rgba(0, 119, 204, 0.3)',
-        pointRadius: 5,
-        pointHoverRadius: 10,
-        pointHitRadius: 30,
-        pointBorderWidth: 2,
+        pointRadius: 3,
+        pointHoverRadius: 6,
+        pointHitRadius: 10,
+        pointBorderWidth: 1,
         pointStyle: 'rectRounded'
       }]
     },
@@ -229,9 +235,9 @@ $mysqli->close();
         text: 'Likes vs Comments Scatterplot'
       },
       legend: {
-    display: true,
-    position: 'bottom'
-  },
+        display: true,
+        position: 'bottom'
+      },
       scales: {
         xAxes: [{
           type: 'linear',
