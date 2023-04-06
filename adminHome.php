@@ -1,26 +1,57 @@
 <?php
 session_start();
-if (!isset($_SESSION['admin_id'])) {
-    header("Location: index.php");
-    exit;
-} elseif (isset($_SESSION["admin_id"])) {
-    $mysqli = require __DIR__ . '/database.php';
-    $sql = "SELECT user.id, user.username, user.email, COUNT(post.id) AS num_posts
-    FROM user
-    LEFT JOIN post ON user.id = post.user_id
-    GROUP BY user.id, user.username, user.email";
-    if ($mysqli->error) {
-        die("Error: " . $mysqli->error);
-    }
 
-    $result = $mysqli->query($sql);
+if (!isset($_SESSION['admin_id'])) {
+  header("Location: index.php");
+  exit;
+} 
+
+if (isset($_SESSION["admin_id"])) {
+  $mysqli = require __DIR__ . '/database.php';
+  $sql = "SELECT user.id, user.username, user.email, COUNT(post.id) AS num_posts
+          FROM user
+          LEFT JOIN post ON user.id = post.user_id
+          GROUP BY user.id, user.username, user.email";
+  
+  if ($mysqli->error) {
+      die("Error: " . $mysqli->error);
+  }
+
+  $result = $mysqli->query($sql);
 }
+
+if (isset($_POST['delete_post'])) {
+  $post_id = $_POST['post_id'];
+
+  $delete_comments_sql = "DELETE FROM comments WHERE post_id = $post_id";
+  $mysqli->query($delete_comments_sql);
+
+  $delete_likes_sql = "DELETE FROM likes WHERE post_id = $post_id";
+  $mysqli->query($delete_likes_sql);
+
+  $delete_post_sql = "DELETE FROM post WHERE id = $post_id";
+  $mysqli->query($delete_post_sql);
+}
+
+$sqldisplaypost = "SELECT post.id, post.title, post.content, post.date, user.username, COUNT(DISTINCT likes.id) AS num_likes, COUNT(DISTINCT comments.id) AS num_comments
+FROM post
+LEFT JOIN user ON post.user_id = user.id
+LEFT JOIN likes ON post.id = likes.post_id
+LEFT JOIN comments ON post.id = comments.post_id
+GROUP BY post.id, post.title, post.content, post.date, user.username
+ORDER BY post.date DESC";
+
+$resultpost = $mysqli->query($sqldisplaypost);
+
+
 $sql_posts_per_day = "SELECT DATE(date) AS post_date, COUNT(*) AS num_posts 
                       FROM post 
                       GROUP BY DATE(date) 
                       ORDER BY post_date ASC";
 $result_posts_per_day = $mysqli->query($sql_posts_per_day);
+
 $dataPoints = array();
+
 if ($result_posts_per_day->num_rows > 0) {
     while ($row = $result_posts_per_day->fetch_assoc()) {
         $date = strtotime($row['post_date']) * 1000;
@@ -28,21 +59,24 @@ if ($result_posts_per_day->num_rows > 0) {
         $dataPoints[] = array("x" => $date, "y" => $num_posts);
     }
 }
+
 $sql_posts = "SELECT post.id, post.title, COUNT(DISTINCT likes.id) AS num_likes, COUNT(DISTINCT comments.id) AS num_comments
               FROM post
               LEFT JOIN likes ON post.id = likes.post_id
               LEFT JOIN comments ON post.id = comments.post_id
               GROUP BY post.id, post.title";
      $result_posts = $mysqli->query($sql_posts);    
+
      $dataPoint = array();
+
 if ($result_posts->num_rows > 0) {
     while ($row = $result_posts->fetch_assoc()) {
         $dataPoint[] = array("x" => $row['num_likes'], "y" => $row['num_comments'], "post_id" => $row['id'], "title" => $row['title']);
     }
 }     
 $mysqli->close();
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -61,55 +95,7 @@ $mysqli->close();
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.bundle.min.js"></script>
 
     <link rel="stylesheet" href="./css/styles.css" />
-    <style>
-  .table-graph-scatter {
-  margin-bottom: 20px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
- table {
-  padding: 20px;
-  margin-bottom: 10px;
-  border-collapse: collapse;
-}
-
-.table {
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.table thead th {
-  background-color: #F2F2F2;
-  font-weight: bold;
-}
-
-.table tbody tr {
-  transition: all .2s ease-in-out;
-}
-
-.table tbody tr:hover {
-  background-color: #F2F2F2;
-}
-
-.table tbody tr td:first-child {
-  font-weight: bold;
-}
-
-    .chart-container {
-        position: relative;
-        width: 100%;
-        height: auto;
-        margin-top: 20px;
-    }
-
-    #chart_div {
-        position: relative;
-        width: 100%;
-        height: 0;
-        padding-bottom: 56.25%;
-    }
-    </style>
+  
 </head>
 
 <body>
@@ -138,7 +124,39 @@ $mysqli->close();
             </div>
         </div>
     </nav>
-    <div class="container mt-4">
+    <br>
+    <div class=" container table-responsive table-container">
+    <table  class="table table-striped table-sm ">
+  <thead>
+    <tr>
+      <th><h2> Posts </h2> </th>
+      <th>Date</th>
+      <th>Username</th>
+      <th>Likes</th>
+      <th>Comments</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php while ($row = $resultpost->fetch_assoc()) { ?>
+      <tr>
+        <td><?php echo $row['title']; ?></td>
+        <td><?php echo $row['date']; ?></td>
+        <td><?php echo $row['username']; ?></td>
+        <td><?php echo $row['num_likes']; ?></td>
+        <td><?php echo $row['num_comments']; ?></td>
+        <td>
+        <form method="POST" onsubmit="return confirm('Are you sure you want to delete this post? All associated comments and likes will be deleted too!')">
+  <input type="hidden" name="post_id" value="<?php echo $row['id']; ?>">
+  <button type="submit" name="delete_post" class="btn btn-danger">Delete</button>
+</form>
+        </td>
+      </tr>
+    <?php } ?>
+  </tbody>
+</table>
+</div>
+    <div class="container">
         <h2>Users</h2>
         <div class="table-responsive table-container">
             <table class="table table-striped table-sm ">
@@ -176,14 +194,16 @@ $mysqli->close();
                     ?>
                 </tbody>
             </table>
-            <div>
+            <br>
+            <div class="container">
                 <h2>Posts per day</h2>
                 </div>
             <div class="chart-container">
                 <div id="chart_div"></div>
             </div>
+            <br>
                 <h2> Interactions per Post </h2>
-                <div class="chart-container">
+                <div class="container chart-container">
   <canvas id="scatterChart"></canvas>
 </div>
 <script>
