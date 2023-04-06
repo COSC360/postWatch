@@ -203,13 +203,6 @@
                         See Posts
                     </a>
                 </div>
-
-                <!-- <div id="clock">
-                    <div id="hour-hand"></div>
-                    <div id="minute-hand"></div>
-                    <div id="clock-face"></div>
-                </div>
-                <div id="clock-time"></div> -->
             </div>
         </div>
 
