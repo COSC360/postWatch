@@ -6,7 +6,7 @@ if (!isset($_SESSION['admin_id'])) {
 } elseif (isset($_SESSION["admin_id"])) {
   require_once __DIR__ . '/database.php';
 
-  // Check if post_id is set
+  //ensure we get the post id field from adminHome 
   if (isset($_POST['post_id']) && !empty($_POST['post_id'])) {
     $post_id = $_POST['post_id'];
 

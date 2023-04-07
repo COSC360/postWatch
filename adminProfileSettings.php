@@ -91,7 +91,7 @@ if (!isset($_SESSION['admin_id'])) {
 <body>
     <main>
         <div class="container">
-            <div class="row justify-content-center"> <!-- add this class -->
+            <div class="row justify-content-center"> 
                 <div class="col-9">
                     <h1> Profile Settings </h1>
                     <br>
