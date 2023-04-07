@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+// make sure only logged in admin can acess
 if (!isset($_SESSION['admin_id'])) {
     header("Location: index.php");
     exit;
@@ -20,7 +20,7 @@ if (isset($_SESSION["admin_id"])) {
     $result = $mysqli->query($sql);
 }
 
-
+//Query for user and his activity info
 $sqldisplaypost = "SELECT post.id, post.title, post.content, post.date, user.username, COUNT(DISTINCT likes.id) AS num_likes, COUNT(DISTINCT comments.id) AS num_comments
 FROM post
 LEFT JOIN user ON post.user_id = user.id
@@ -31,11 +31,11 @@ ORDER BY post.date DESC";
 
 $resultpost = $mysqli->query($sqldisplaypost);
 
-
+// Query for posts per day chart
 $sql_posts_per_day = "SELECT DATE(date) AS post_date, COUNT(*) AS num_posts 
-                      FROM post 
-                      GROUP BY DATE(date) 
-                      ORDER BY post_date ASC";
+FROM post 
+GROUP BY DATE(date) 
+ORDER BY post_date ASC";
 $result_posts_per_day = $mysqli->query($sql_posts_per_day);
 
 $dataPoints = array();
@@ -47,12 +47,12 @@ if ($result_posts_per_day->num_rows > 0) {
         $dataPoints[] = array("x" => $date, "y" => $num_posts);
     }
 }
-
+//Query for post info
 $sql_posts = "SELECT post.id, post.title, COUNT(DISTINCT likes.id) AS num_likes, COUNT(DISTINCT comments.id) AS num_comments
-              FROM post
-              LEFT JOIN likes ON post.id = likes.post_id
-              LEFT JOIN comments ON post.id = comments.post_id
-              GROUP BY post.id, post.title";
+FROM post
+LEFT JOIN likes ON post.id = likes.post_id
+LEFT JOIN comments ON post.id = comments.post_id
+GROUP BY post.id, post.title";
 $result_posts = $mysqli->query($sql_posts);
 
 $dataPoint = array();
@@ -121,6 +121,7 @@ $mysqli->close();
         </div>
     </nav>
     <br>
+    <!-- Create table displaying post info -->
     <div class=" container mt-5  table-container table-responsive">
         <table class="table table-striped table-sm table-bordered">
             <thead>
@@ -165,6 +166,8 @@ $mysqli->close();
             </tbody>
         </table>
     </div>
+
+    <!-- Create table displaying user info -->
     <div class="container mt-5">
         <h2>Users</h2>
         <div class="table-responsive table-container">
@@ -204,6 +207,7 @@ $mysqli->close();
                 </tbody>
             </table>
             <br>
+             <!-- Chart made to display amount of likes and comments per post -->
             <div class="container">
                 <h2>Posts per day</h2>
             </div>
@@ -276,6 +280,7 @@ $mysqli->close();
             });
             </script>
             <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+              <!-- Chart made to display amount of posts made per day -->
             <script type="text/javascript">
             google.charts.load('current', {
                 'packages': ['corechart']
