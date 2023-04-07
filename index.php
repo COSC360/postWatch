@@ -352,7 +352,7 @@
                 <a href="FAQ.php" class="nav-link px-2 text-muted">FAQs</a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link px-2 text-muted">About</a>
+                <a href="About.php" class="nav-link px-2 text-muted">About</a>
             </li>
         </ul>
     </footer>

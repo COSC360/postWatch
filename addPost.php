@@ -6,15 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>addpost</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
 
     <script src="https://kit.fontawesome.com/ff48066121.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+        </script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js" integrity="sha512-TNjCaZG8XT9Yi+a51/qH0PCv1nWnkz8oACaA0MwJ+IaZoydP8Cl9Ok40J51fEySWtTzI+1fTJnoh75AIrDMPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"
+        integrity="sha512-TNjCaZG8XT9Yi+a51/qH0PCv1nWnkz8oACaA0MwJ+IaZoydP8Cl9Ok40J51fEySWtTzI+1fTJnoh75AIrDMPQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="./css/styles.css" />
 </head>
 
@@ -34,7 +38,8 @@
                         <input type="text" class="form-control" id="title" name="title" placeholder="Title" />
 
                         <label for="content" class="form-label">Content</label>
-                        <textarea class="form-control" id="content" name="content" rows="3" placeholder="Content"></textarea>
+                        <textarea class="form-control" id="content" name="content" rows="3"
+                            placeholder="Content"></textarea>
 
                         <label for="image" class="form-label">Image</label>
                         <input type="file" class="form-control" id="image" name="image" placeholder="Upload Image" />
@@ -53,8 +58,8 @@
         </div>
     </div>
     <script>
-        $(document).ready(function() {
-            $("#postForm").submit(function(e) {
+        $(document).ready(function () {
+            $("#postForm").submit(function (e) {
                 e.preventDefault();
                 var title = $("#title").val().trim();
                 var content = $("#content").val().trim();

@@ -14,30 +14,32 @@ if (!isset($_SESSION['admin_id'])) {
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Admin-Settings</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-    .navbar-nav .nav-link:hover {
-        background-color: #3d464e;
-        border-radius: 10%;
+        .navbar-nav .nav-link:hover {
+            background-color: #3d464e;
+            border-radius: 10%;
 
-    }
+        }
 
-    .btn:hover {
-        background-color: #f1f1f1;
-    }
+        .btn:hover {
+            background-color: #f1f1f1;
+        }
 
-    .btn i {
-        margin-right: 5px;
-    }
-    .justify-content-center {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-    }
+        .btn i {
+            margin-right: 5px;
+        }
+
+        .justify-content-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
     </style>
 
 
@@ -50,7 +52,7 @@ if (!isset($_SESSION['admin_id'])) {
     <script src="https://kit.fontawesome.com/ff48066121.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
-    </script>
+        </script>
 
     <link rel="stylesheet" href="./css/styles.css" />
 
@@ -66,7 +68,7 @@ if (!isset($_SESSION['admin_id'])) {
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto">
-                <li>
+                    <li>
                         <a href="adminHome.php">
                             <button type="button" class="btn  btn-sm px-4">
                                 Home
@@ -91,7 +93,7 @@ if (!isset($_SESSION['admin_id'])) {
 <body>
     <main>
         <div class="container">
-            <div class="row justify-content-center"> 
+            <div class="row justify-content-center">
                 <div class="col-9">
                     <h1> Profile Settings </h1>
                     <br>
@@ -121,13 +123,13 @@ if (!isset($_SESSION['admin_id'])) {
 
         <ul class="nav col-md-4 justify-content-end">
             <li class="nav-item">
-                <a href="#" class="nav-link px-2 text-muted">Home</a>
+                <a href="adminHome.php" class="nav-link px-2 text-muted">Home</a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link px-2 text-muted">FAQs</a>
+                <a href="FAQ.php" class="nav-link px-2 text-muted">FAQs</a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link px-2 text-muted">About</a>
+                <a href="About.php" class="nav-link px-2 text-muted">About</a>
             </li>
         </ul>
 

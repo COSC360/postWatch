@@ -6,11 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FAQs</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
     <script src="https://kit.fontawesome.com/ff48066121.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
-    </script>
+        </script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -47,7 +48,7 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-white static-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white static-top">
         <div class="container">
             <a class="navbar-brand" href="#">
                 <img src="./img/logo.png" alt="..." height="80" />
@@ -80,22 +81,32 @@
         <h1>Frequently Asked Questions</h1>
         <br>
         <div class="question">Q: What is Post Watch?</div>
-        <div class="answer">Post Watch is a blogging website meant for watch enthusiasts, we provide a platform for sharing and discussing watches, watch brands, and the latest trends in the watch industry.</div>
+        <div class="answer">Post Watch is a blogging website meant for watch enthusiasts, we provide a platform for
+            sharing and discussing watches, watch brands, and the latest trends in the watch industry.</div>
 
         <div class="question">Q: How can I join Post Watch?</div>
-        <div class="answer">Joining our community is simple and free! Just visit our home page, click the Sign In button on top to be redirected to the sign in form and click on the "Sign Up" button. Follow the prompts to create your account and start engaging with the watch community on our site.</div>
+        <div class="answer">Joining our community is simple and free! Just visit our home page, click the Sign In button
+            on top to be redirected to the sign in form and click on the "Sign Up" button. Follow the prompts to create
+            your account and start engaging with the watch community on our site.</div>
 
         <div class="question">Q: Are there any community guidelines on Post Watch?</div>
-        <div class="answer">Yes, we have implemented very strict community guidelines in place to ensure a respectful and positive environment for all users. These guidelines include no spamming, no offensive language or behavior, and no promotion of counterfeit products. Please review our community guidelines on our website for more information.</div>
+        <div class="answer">Yes, we have implemented very strict community guidelines in place to ensure a respectful
+            and positive environment for all users. These guidelines include no spamming, no offensive language or
+            behavior, and no promotion of counterfeit products. Please review our community guidelines on our website
+            for more information.</div>
 
         <div class="question">Q: Can I share my own watch collection on Post Watch?</div>
-        <div class="answer">Absolutely! We encourage users to share their watch collections, stories, and experiences on Post Watch. You can create posts, add images, and interact with other members of this wonderful community who share the same passion for watches.</div>
+        <div class="answer">Absolutely! We encourage users to share their watch collections, stories, and experiences on
+            Post Watch. You can create posts, add images, and interact with other members of this wonderful community
+            who share the same passion for watches.</div>
 
         <div class="question">Q: How can I interact with other users on Post Watch?</div>
         <div class="answer">You can interact with other users on Post Watch through comments and likes on posts.</div>
 
         <div class="question">Q: Is my personal information safe on Post Watch?</div>
-        <div class="answer">Yes, we take the privacy and security of our users' information seriously. We have implemented measures to protect your personal information so don't worry about recieving unwanted emails!.</div>
+        <div class="answer">Yes, we take the privacy and security of our users' information seriously. We have
+            implemented measures to protect your personal information so don't worry about recieving unwanted emails!.
+        </div>
 
     </div>
 </body>

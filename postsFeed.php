@@ -141,13 +141,13 @@ if (!isset($_SESSION['user_id'])) {
 
             <ul class="nav col-md-4 justify-content-end">
                 <li class="nav-item">
-                    <a href="#" class="nav-link px-2 text-muted">Home</a>
+                    <a href="index.php" class="nav-link px-2 text-muted">Home</a>
                 </li>
                 <li class="nav-item">
                     <a href="FAQ.php" class="nav-link px-2 text-muted">FAQs</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link px-2 text-muted">About</a>
+                    <a href="About.php" class="nav-link px-2 text-muted">About</a>
                 </li>
             </ul>
 

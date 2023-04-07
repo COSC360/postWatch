@@ -11,7 +11,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
-    </script>
+        </script>
 
     <script src="./js/signInValid.js"></script>
     <link rel="stylesheet" href="./css/styles.css" />
@@ -60,13 +60,13 @@
 
         <ul class="nav col-md-4 justify-content-end">
             <li class="nav-item">
-                <a href="#" class="nav-link px-2 text-muted">Home</a>
+                <a href="index.php" class="nav-link px-2 text-muted">Home</a>
             </li>
             <li class="nav-item">
                 <a href="FAQ.php" class="nav-link px-2 text-muted">FAQs</a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link px-2 text-muted">About</a>
+                <a href="About.php" class="nav-link px-2 text-muted">About</a>
             </li>
         </ul>
     </footer>
