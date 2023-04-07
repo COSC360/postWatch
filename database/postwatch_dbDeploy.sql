@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 02, 2023 at 09:21 PM
+-- Generation Time: Apr 07, 2023 at 06:48 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -168,8 +168,7 @@ INSERT INTO `user` (`id`, `username`, `email`, `password_hashed`, `profile_pic`)
 (1, 'usernenen', 'tushanshahid0@gmail.com', '$2y$10$Zbtni6C5Xewti3OS3tJKUOnU.P4KHYa10cdVymOZMeduh..dCxYmi', NULL),
 (8, 'Top G', 'topg@email.com', '$2y$10$b5fdcaJpAf8GsT3gvVxhhezFQ4bi6orA926coCYOe3ph2Hr.4BZjG', 0x75706c6f6164732f70726f506963312e6a7067),
 (9, 'Top G2', 'topg2@email.com', '$2y$10$5PxxOIHNvXaXIQ3ryKt27OLqaUjkhb87NmIoIovLPKNySEDCTSHiy', NULL),
-(10, 'JohnDoe99', 'johndoe@email.com', '$2y$10$.nEBvH/xP6JzNoZHF/P.7.h4MyWbCOW3Yr6fsGAADGd80ybKhiMLO', 0x75706c6f6164732f70726f506963322e6a7067),
-(11, 'new', 's.s.tushan@gmail.com', '$2y$10$D9cw0ubW/atXMWqqkgf6Uu7jp7IwjmjZ3qPo1adDuVF19xRkwPYTO', NULL);
+(10, 'JohnDoe99', 'johndoe@email.com', '$2y$10$.nEBvH/xP6JzNoZHF/P.7.h4MyWbCOW3Yr6fsGAADGd80ybKhiMLO', 0x75706c6f6164732f70726f506963322e6a7067);
 
 --
 -- Indexes for dumped tables
@@ -228,7 +227,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `comments`
@@ -258,7 +257,7 @@ ALTER TABLE `post`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- Constraints for dumped tables
