@@ -1,6 +1,6 @@
 <?php
-var_dump($_POST);
-var_dump($_FILES);
+// var_dump($_POST);
+// var_dump($_FILES);
 
 if (isset($_POST["title"]) && isset($_POST["content"]) && isset($_FILES["image"])) {
     echo "Nice";

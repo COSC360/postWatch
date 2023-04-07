@@ -323,4 +323,7 @@ $mysqli->close();
         </ul>
     </footer>
 
+</div>
+
+
 </html>
