@@ -77,20 +77,20 @@ $mysqli->close();
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/ff48066121.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-        crossorigin="anonymous"></script>
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+    </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.bundle.min.js"></script>
     <link rel="stylesheet" href="./css/styles.css">
     <style>
-        .table-responsive {
-            overflow-x: auto;
-        }
+    .table-responsive {
+        overflow-x: auto;
+    }
 
-        .table-responsive th,
-        .table-responsive td {
-            white-space: nowrap;
-        }
+    .table-responsive th,
+    .table-responsive td {
+        white-space: nowrap;
+    }
     </style>
 </head>
 
@@ -137,30 +137,30 @@ $mysqli->close();
             </thead>
             <tbody>
                 <?php while ($row = $resultpost->fetch_assoc()) { ?>
-                    <tr>
-                        <td>
-                            <?php echo $row['title']; ?>
-                        </td>
-                        <td>
-                            <?php echo $row['date']; ?>
-                        </td>
-                        <td>
-                            <?php echo $row['username']; ?>
-                        </td>
-                        <td>
-                            <?php echo $row['num_likes']; ?>
-                        </td>
-                        <td>
-                            <?php echo $row['num_comments']; ?>
-                        </td>
-                        <td>
-                            <form action='delete_post.php' method='POST'
-                                onsubmit="return confirm('Are you sure you want to delete this post? All associated comments and likes will be deleted too!')">
-                                <input type="hidden" name="post_id" value="<?php echo $row['id']; ?>">
-                                <button type="submit" name="delete_post" class="btn btn-danger">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>
+                        <?php echo $row['title']; ?>
+                    </td>
+                    <td>
+                        <?php echo $row['date']; ?>
+                    </td>
+                    <td>
+                        <?php echo $row['username']; ?>
+                    </td>
+                    <td>
+                        <?php echo $row['num_likes']; ?>
+                    </td>
+                    <td>
+                        <?php echo $row['num_comments']; ?>
+                    </td>
+                    <td>
+                        <form action='delete_post.php' method='POST'
+                            onsubmit="return confirm('Are you sure you want to delete this post? All associated comments and likes will be deleted too!')">
+                            <input type="hidden" name="post_id" value="<?php echo $row['id']; ?>">
+                            <button type="submit" name="delete_post" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
                 <?php } ?>
             </tbody>
         </table>
@@ -213,94 +213,96 @@ $mysqli->close();
             <br>
             <h2> Interactions per Post </h2>
             <div class="container chart-container">
-                <canvas id="scatterChart"></canvas>
+                <div style="height: 400px; "> <canvas id="scatterChart"></canvas> </div>
             </div>
             <script>
-                var scatterChart = new Chart(document.getElementById("scatterChart"), {
-                    type: 'scatter',
-                    data: {
-                        datasets: [{
-                            label: 'Likes vs Comments',
-                            data: <?php echo json_encode($dataPoint); ?>,
-                            backgroundColor: 'rgba(0, 119, 204, 0.3)',
-                            pointRadius: 3,
-                            pointHoverRadius: 6,
-                            pointHitRadius: 10,
-                            pointBorderWidth: 1,
-                            pointStyle: 'rectRounded'
+            var scatterChart = new Chart(document.getElementById("scatterChart"), {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: 'Likes vs Comments',
+                        data: <?php echo json_encode($dataPoint); ?>,
+                        backgroundColor: 'rgba(0, 119, 204, 1)',
+                        pointRadius: 3,
+                        pointHoverRadius: 6,
+                        pointHitRadius: 10,
+                        pointBorderWidth: 1,
+                        pointStyle: 'rectRounded'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    title: {
+                        display: true,
+                        text: 'Likes vs Comments Scatterplot'
+                    },
+                    legend: {
+                        display: true,
+                        position: 'bottom'
+                    },
+                    scales: {
+                        xAxes: [{
+                            type: 'linear',
+                            position: 'bottom',
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Likes'
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Comments'
+                            }
                         }]
                     },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        title: {
-                            display: true,
-                            text: 'Likes vs Comments Scatterplot'
-                        },
-                        legend: {
-                            display: true,
-                            position: 'bottom'
-                        },
-                        scales: {
-                            xAxes: [{
-                                type: 'linear',
-                                position: 'bottom',
-                                scaleLabel: {
-                                    display: true,
-                                    labelString: 'Likes'
-                                }
-                            }],
-                            yAxes: [{
-                                scaleLabel: {
-                                    display: true,
-                                    labelString: 'Comments'
-                                }
-                            }]
-                        },
-                        tooltips: {
-                            callbacks: {
-                                title: function (tooltipItem, data) {
-                                    return data.datasets[tooltipItem[0].datasetIndex].data[tooltipItem[0].index]
-                                        .title;
-                                },
-                                label: function (tooltipItem, data) {
-                                    return '(' + data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index]
-                                        .x + ', ' + data.datasets[tooltipItem.datasetIndex].data[tooltipItem
-                                            .index].y + ')';
-                                }
+                    tooltips: {
+                        callbacks: {
+                            title: function(tooltipItem, data) {
+                                return data.datasets[tooltipItem[0].datasetIndex].data[tooltipItem[0]
+                                        .index]
+                                    .title;
+                            },
+                            label: function(tooltipItem, data) {
+                                return '(' + data.datasets[tooltipItem.datasetIndex].data[tooltipItem
+                                        .index]
+                                    .x + ', ' + data.datasets[tooltipItem.datasetIndex].data[tooltipItem
+                                        .index].y + ')';
                             }
                         }
                     }
-                });
+                }
+            });
             </script>
             <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
             <script type="text/javascript">
-                google.charts.load('current', {
-                    'packages': ['corechart']
-                });
-                google.charts.setOnLoadCallback(drawChart);
+            google.charts.load('current', {
+                'packages': ['corechart']
+            });
+            google.charts.setOnLoadCallback(drawChart);
 
-                function drawChart() {
-                    var data = google.visualization.arrayToDataTable([
-                        ['Date', 'Posts per day'],
-                        <?php
+            function drawChart() {
+                var data = google.visualization.arrayToDataTable([
+                    ['Date', 'Posts per day'],
+                    <?php
                         foreach ($dataPoints as $point) {
                             echo "['" . date('Y-m-d', $point['x'] / 1000) . "', " . $point['y'] . "],";
                         }
                         ?>
-                    ]);
-                    var options = {
-                        height: 400,
+                ]);
+                var options = {
+                    height: 400,
 
-                        title: 'Posts per day',
-                        legend: {
-                            position: 'none'
-                        }
+                    title: 'Posts per day',
+                    legend: {
+                        position: 'none'
+                    }
 
-                    };
-                    var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-                    chart.draw(data, options);
-                }
+                };
+                var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+                chart.draw(data, options);
+            }
             </script>
 </body>
 
