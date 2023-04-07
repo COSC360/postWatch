@@ -118,7 +118,7 @@ $mysqli->close();
         </div>
     </nav>
     <br>
-    <div class=" container mt-5 table-responsive">
+    <div class=" container mt-5  table-container table-responsive">
     <table  class="table table-striped table-sm table-bordered">
   <thead>
     <tr>
@@ -189,20 +189,16 @@ $mysqli->close();
             </table>
             <br>
             <div class="container">
-    <h2>Posts per day</h2>
+                <h2>Posts per day</h2>
+                </div>
+            <div class="chart-container">
+                <div id="chart_div"></div>
+            </div>
+            <br>
+                <h2> Interactions per Post </h2>
+                <div class="container chart-container">
+  <canvas id="scatterChart"></canvas>
 </div>
-<div class="chart-container">
-    <div id="chart_div"></div>
-</div>
-<br>
-<h2> Interactions per Post </h2>
-<div class="container chart-container">
-    <canvas id="scatterChart"></canvas>
-</div>
-</div>
-    </div>
-    </div>
-    </div>
 <script>
                 var scatterChart = new Chart(document.getElementById("scatterChart"), {
                     type: 'scatter',
