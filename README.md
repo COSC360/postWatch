@@ -96,10 +96,12 @@ Site is deployed to cosc360.ok.ubc.ca server
 
 - HTML
 - CSS
-- Bootstrap
+- Bootstrap5
 - PHP
 - Javascript
 - MySQL
+- PHPUNIT
+- PHPMAILER
 
 
 ## License
