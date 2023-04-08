@@ -55,6 +55,7 @@ Users:
 - Filter Posts on latest, top likes, top comments
 - View full Post
 - Profile settings to change default profile picture, update email, update username
+- Reset password if forgotten
 
 Admin:
 - Sign In
@@ -76,6 +77,8 @@ ids of users, and page redirections.
 - Alerts on pages and forms for better navigation.
 
 - Post Images and user profile pictures stored in the database.
+
+- Reset password functionality sends reset password link to user's email using php-mailer.
 
 ## Deployment Details
 
