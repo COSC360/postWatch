@@ -47,10 +47,14 @@ Users:
 - Sign Up
 - Create Posts
 - Comment on Posts
+- Like Posts
 - Change default profile picture in profile settings
 - View Posts that user has posted in user homepage
+- View Total number of Likes and Comments received in user homepage
 - View all Posts (able to see author of posts, number of comments, posts created date)
+- Filter Posts on latest, top likes, top comments
 - View full Post
+- Profile settings to change default profile picture, update email, update username
 
 Admin:
 - Sign In
@@ -75,7 +79,18 @@ ids of users, and page redirections.
 
 ## Deployment Details
 
+Site is deployed to cosc360.ok.ubc.ca server
+
 ## Installation Guide
+
+- Download and install Composer on your local machine. You can do this by following the installation instructions on the Composer website: https://getcomposer.org/doc/00-intro.md.
+- Clone the PostWatch repository from GitHub to your local machine using the following command: ``` git clone https://github.com/COSC360/postWatch ```
+- Navigate to the project directory using the terminal or command prompt: ``` cd PostWatch ```
+- Install the dependencies listed in the composer.json file by running the following command: ``` php composer.phar install ```
+- Import the sql file from database directory into your database using a tool such as phpMyAdmin or the MySQL command line interface.
+- Start the PHP development server by running the following command in the project directory: ``` php -S localhost:8000 ```
+- Visit http://localhost:8000 in your web browser to enjoy the postWatch website.
+
 
 ## Tech Stack Used
 
@@ -84,6 +99,7 @@ ids of users, and page redirections.
 - Bootstrap
 - PHP
 - Javascript
+- MySQL
 
 
 ## License
