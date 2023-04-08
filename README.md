@@ -91,6 +91,7 @@ Site is deployed to cosc360.ok.ubc.ca server
 - Navigate to the project directory using the terminal or command prompt: ``` cd PostWatch ```
 - Install the dependencies listed in the composer.json file by running the following command: ``` php composer.phar install ```
 - Import the sql file from database directory into your database using a tool such as phpMyAdmin or the MySQL command line interface.
+-  Configure database.php file by your database credentials
 - Start the PHP development server by running the following command in the project directory: ``` php -S localhost:8000 ```
 - Visit http://localhost:8000 in your web browser to enjoy the postWatch website.
 
